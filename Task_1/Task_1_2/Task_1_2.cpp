@@ -35,39 +35,42 @@ int main()
     std::vector<int> numOfThreads{ 1, 2, 4, 8, 16 };
     std::vector<int> sizeOfVector{ 1'000, 10'000, 100'000, 1'000'000 };
 
-
-
-    // Creating threads for vector summation
-    for (int j = 0; j < numOfThreads[j]; j++)
+    for (int j = 0; j < numOfThreads[j]; ++j)
+    
     {
         std::cout << std::endl << numOfThreads[j] << " threads";
         threads.clear();
-        
-        
-        for (int i = 0; i < sizeOfVector[i]; i++)
+      
+
+        for (int i = 0; i < sizeOfVector[i]; ++i)
         {
-            
-            //int num_threads = 1;
             vector1.resize(sizeOfVector[i]);
             vector2.resize(sizeOfVector[i]);
             sumOfVectors.resize(sizeOfVector[i]);
-            
-            //threads.reserve(0);
-            int chunk_size = sizeOfVector[i] / numOfThreads[j];
+
+
+            int chunkSize = static_cast<int> (sizeOfVector[i] / numOfThreads[j]);
             auto thr1_10000_start = std::chrono::high_resolution_clock::now();
-            threads.push_back(std::thread(sumVectors, std::ref(vector1), std::ref(vector2), std::ref(sumOfVectors), i * chunk_size, (i + 1) * chunk_size));
+            threads.push_back(std::thread(sumVectors, std::ref(vector1), std::ref(vector2), std::ref(sumOfVectors), j * chunkSize, (j + 1) * chunkSize));
             auto thr1_10000_stop = std::chrono::high_resolution_clock::now();
             std::chrono::duration<double, std::milli> thr1_10000_time = thr1_10000_stop - thr1_10000_start;
             std::cout << std::setw(9) << "\t" << thr1_10000_time.count() << "ms";
 
-            
+
+
+
         }
+
+    }
+
+    
+
         for (auto& it : threads)
         {
             it.join();
         }
         
-    }
+    
 
 
     std::cout << "\n\n";
