@@ -7,24 +7,27 @@
 #include <functional>
 #include <atomic>
 
+using namespace std::chrono_literals;
 int maxClients = 5;
 std::atomic_int clientCounter = 0;
 
-void clientThread() {
+void clientThread() 
+{
     while (clientCounter < maxClients)
     {
         std::this_thread::sleep_for(std::chrono::seconds (1));
-        ++clientCounter;
+        clientCounter += 1;
         std::cout << "Client joined, total clients +1: " << clientCounter << std::endl;
     }
 }
 
-void operatorThread() {
+void operatorThread() 
+{
     while (true) {
         std::this_thread::sleep_for(std::chrono::seconds(2));
         if (clientCounter > 0)
         { 
-            --clientCounter;
+            clientCounter -= 1;
             std::cout << "The operator served the client. Number of clients -1: " << clientCounter << std::endl; }
         else
         {
