@@ -1,27 +1,21 @@
 ﻿// Домашнее задание к занятию «Конкуренция, состояние гонки»
 // Задание 2. Прогресс-бар
 
-#include <iostream>
-#include <vector>
-#include <thread>
-#include <string>
-#include <chrono>
-#include <thread>
-#include <mutex>
 #include "Timer.h"
+#include <chrono>
+#include <iostream>
+#include <mutex>
+#include <string>
+#include <thread>
+#include <vector>
 
+std::once_flag flag;
 std::mutex m1; // for printing a number and a id of threads
 std::mutex m2;
 std::mutex m3;
 std::mutex m4;
 
-void tableHeader()
-{
-    std::cout << "#\t";
-    std::cout << "id\t";
-    std::cout << "Progress Bar\t";
-    std::cout << "Time";
-}
+void tableHeader() { std::cout << "#\t" << "id\t" << "Progress Bar\t" << "Time" << std::endl; }
 
 void moveKaretka1(const int progress, const int numberThreadsNow)
 {
@@ -31,27 +25,30 @@ void moveKaretka1(const int progress, const int numberThreadsNow)
 
 void moveKaretka2(const int progress, const int numberThreadsNow)
 {
-    std::unique_lock ulc(m4);
+    std::unique_lock ulc(m2);
     std::cout << '\r';
     std::cout << numberThreadsNow << '\t';
     std::cout << std::this_thread::get_id() << '\t';
     std::cout << std::string(progress, char(219));
+    //ulc.unlock();
 }
 
-void progressBar(const int numberThreadsNow)
+static void progressBar(const int numberThreadsNow)
 {
     int progress = 0;
     int total = 10;
     int y = 1;
+    std::call_once(flag, tableHeader);
     
     std::unique_lock ulc(m3);
     moveKaretka1(progress, numberThreadsNow);
+    
     Timer(Timer1);
     Timer1.start();
-    
 
     while (progress < total)
     {
+        
         moveKaretka2(progress, numberThreadsNow);
         std::cout << char(178);
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -59,10 +56,12 @@ void progressBar(const int numberThreadsNow)
         std::cout << char(219);
         std::cout << std::string(total - progress, '\t');
         std::cout.flush();
+        
         ++progress;
+        
     }
-    
     Timer1.print();
+    
 }
 
 
@@ -70,8 +69,8 @@ void progressBar(const int numberThreadsNow)
 
 int main()
 {
-    tableHeader();
-    int countThreads = 3;
+    //tableHeader();
+    int countThreads = 5;
     std::vector<std::thread> vectorThreads(countThreads);
     
     for (size_t i = 0; i < countThreads; i++)

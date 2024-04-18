@@ -5,6 +5,7 @@
 #include <mutex>
 
 std::mutex m5;
+std::mutex m6;
 
 class consol_parameter
 {
@@ -42,14 +43,14 @@ public:
     Timer() : m_beg(clock_t::now()) { }
     Timer(std::string name) : m_name(name), m_beg(clock_t::now()) { }
 
-    void start(/*std::string name*/) {
-        //m_name = name;
+    void start(/*std::string name*/) 
+    {
+        std::unique_lock ulc(m6);
         m_beg = clock_t::now();
     }
     void print() const 
     {
         std::unique_lock ulc(m5);
         std::cout/* << m_name << ":\t"*/ << elapsed() * 1000 << " ms" << '\n';
-        ulc.unlock();
     }
 };
