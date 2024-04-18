@@ -10,10 +10,12 @@
 #include <mutex>
 #include "Timer.h"
 
+
 std::mutex m1; // for printing a number and a id of threads
 std::mutex m2;
 std::mutex m3;
 std::mutex m4;
+
 
 void tableHeader()
 {
@@ -27,6 +29,7 @@ void moveKaretka1(const int progress, const int numberThreadsNow)
 {
     std::unique_lock ulc(m1);
     consol_parameter::SetPosition(0, numberThreadsNow + 1);
+    //ulc.unlock();
 }
 
 void moveKaretka2(const int progress, const int numberThreadsNow)
@@ -36,6 +39,7 @@ void moveKaretka2(const int progress, const int numberThreadsNow)
     std::cout << numberThreadsNow << '\t';
     std::cout << std::this_thread::get_id() << '\t';
     std::cout << std::string(progress, char(219));
+    ulc.unlock();
 }
 
 void progressBar(const int numberThreadsNow)
@@ -46,13 +50,17 @@ void progressBar(const int numberThreadsNow)
     
     std::unique_lock ulc(m3);
     moveKaretka1(progress, numberThreadsNow);
+    std::unique_lock ulc(m3);
+    
     Timer(Timer1);
     Timer1.start();
-    
+
 
     while (progress < total)
     {
+        
         moveKaretka2(progress, numberThreadsNow);
+        std::unique_lock ulc(m2);
         std::cout << char(178);
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
         std::cout << '\b';
@@ -60,9 +68,11 @@ void progressBar(const int numberThreadsNow)
         std::cout << std::string(total - progress, '\t');
         std::cout.flush();
         ++progress;
+        
     }
     
     Timer1.print();
+    ulc.unlock();
 }
 
 
