@@ -9,6 +9,8 @@ private:
 	std::vector<int> vec;
 	std::mutex m;
 
+	void printThisVec(Data& other);
+
 public:
 	Data() = default;
 	Data(std::vector<int> vec) : vec{ vec } {}
