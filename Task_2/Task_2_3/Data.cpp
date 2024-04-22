@@ -3,62 +3,19 @@
 
 
 
-void Data::printThisVec(Data& other)
+
+int Data::getValue() const
 {
-    std::cout << "ID thread " << std::this_thread::get_id() << ": ";
-    for (int num : this->vec)
-    {
-        std::cout << num << " ";
-    }
-    std::cout << std::endl;
-    std::cout << "ID thread " << std::this_thread::get_id() << ": ";
-    for (int num : other.vec)
-    {
-        std::cout << num << " ";
-    }
-    std::cout << std::endl;
+	return Data::value_;
 }
 
-void Data::swapWithLock(Data& other)
+void Data::setValue(int value)
 {
-    this->m.lock();
-    other.m.lock();
-
-    std::swap(this->vec, other.vec);
-    std::cout << std::endl << __FUNCTION__ << std::endl;
-    this->printThisVec(other);
-
-    this->m.unlock();
-    other.m.unlock();
+	Data::value_ = value;
 }
 
-void Data::swapWithScopedLock(Data& other)
-{
-    std::scoped_lock sl(this->m, other.m);
+//void Data::printDataValue() const
+//{
+//	std::cout << "value_ = " << value_ << ";" << std::endl;
+//}
 
-    std::swap(this->vec, other.vec);
-    std::cout << std::endl << __FUNCTION__ << std::endl;
-    this->printThisVec(other);
-}
-
-void Data::swapWithUniqueLock(Data& other)
-{
-    std::unique_lock ul1(this->m);
-    std::unique_lock ul2(other.m);
-
-    std::swap(this->vec, other.vec);
-    std::cout << std::endl << __FUNCTION__ << std::endl;
-    this->printThisVec(other);
-}
-
-
-void Data::printData()
-{
-    std::cout << "ID thread " << std::this_thread::get_id() << ": ";
-
-    for (int num : this->vec) 
-    {
-        std::cout << num << " ";
-    }
-    std::cout << std::endl;
-}
