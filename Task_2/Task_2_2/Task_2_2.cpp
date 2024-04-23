@@ -10,67 +10,57 @@
 #include <vector>
 
 std::once_flag flag;
-std::mutex m1; // for printing a number and a id of threads
+std::mutex m1;
 std::mutex m2;
 std::mutex m3;
 std::mutex m4;
 
 void tableHeader() { std::cout << "#\t" << "id\t" << "Progress Bar\t" << "Time" << std::endl; }
 
-void moveKaretka1(const int progress, const int numberThreadsNow)
-{
-    std::unique_lock ulc(m1);
-    consol_parameter::SetPosition(0, numberThreadsNow + 1);
-}
-
-void moveKaretka2(const int progress, const int numberThreadsNow)
-{
-    std::unique_lock ulc(m2);
-    std::cout << '\r';
-    std::cout << numberThreadsNow << '\t';
-    std::cout << std::this_thread::get_id() << '\t';
-    std::cout << std::string(progress, char(219));
-    //ulc.unlock();
-}
 
 static void progressBar(const int numberThreadsNow)
 {
-    int progress = 0;
-    int total = 10;
-    int y = 1;
-    std::call_once(flag, tableHeader);
+    int progress = 15;
+    int total = 25;
+    int PositionForTime = 35;
+
     
-    std::unique_lock ulc(m3);
-    moveKaretka1(progress, numberThreadsNow);
+    std::call_once(flag, tableHeader);    
     
-    Timer(Timer1);
-    Timer1.start();
+
+    m2.lock();
+    Timer t1;
+    consol_parameter d1;
+    m2.unlock();
 
     while (progress < total)
     {
-        
-        moveKaretka2(progress, numberThreadsNow);
-        std::cout << char(178);
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        std::cout << '\b';
+        m1.lock();
+        
+        d1.SetPosition(progress, numberThreadsNow + 1);
+
+        //std::cout << char(178);
+        //std::cout << '\b';
+        
         std::cout << char(219);
-        std::cout << std::string(total - progress, '\t');
-        std::cout.flush();
+        
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        
         
         ++progress;
-        
+        m1.unlock();
     }
-    Timer1.print();
     
+    m3.lock();
+    d1.SetPosition(PositionForTime, numberThreadsNow + 1);
+    t1.print();
+    m3.unlock();
 }
-
-
-
 
 int main()
 {
-    //tableHeader();
-    int countThreads = 5;
+    int countThreads = 3;
     std::vector<std::thread> vectorThreads(countThreads);
     
     for (size_t i = 0; i < countThreads; i++)
@@ -81,5 +71,5 @@ int main()
     {
         i.join();
     }
-    std::cout << "\n\n...main end...\n";
+    std::cout <<  '\n\n\n\n';
 }

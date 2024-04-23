@@ -2,10 +2,7 @@
 #include <chrono>
 #include <iostream>
 #include <Windows.h>
-#include <mutex>
-
-std::mutex m5;
-std::mutex m6;
+#include <thread>
 
 class consol_parameter
 {
@@ -31,7 +28,7 @@ class Timer
 private:
     using clock_t = std::chrono::high_resolution_clock;
     using second_t = std::chrono::duration<double, std::ratio<1> >;
-    
+
     std::string m_name;
     std::chrono::time_point<clock_t> m_beg;
     double elapsed() const
@@ -43,14 +40,11 @@ public:
     Timer() : m_beg(clock_t::now()) { }
     Timer(std::string name) : m_name(name), m_beg(clock_t::now()) { }
 
-    void start(/*std::string name*/) 
-    {
-        std::unique_lock ulc(m6);
+    void start(std::string name) {
+        m_name = name;
         m_beg = clock_t::now();
     }
-    void print() const 
-    {
-        std::unique_lock ulc(m5);
-        std::cout/* << m_name << ":\t"*/ << elapsed() * 1000 << " ms" << '\n';
+    void print() const {
+        std::cout << "ID" << std::this_thread::get_id() << "-" << elapsed() * 1000 << " ms" << '\n\n\n\n';
     }
 };
