@@ -45,6 +45,6 @@ public:
         m_beg = clock_t::now();
     }
     void print() const {
-        std::cout << "ID" << std::this_thread::get_id() << "-" << elapsed() * 1000 << " ms" << '\n\n\n\n';
+        std::cout << "ID" << std::this_thread::get_id() << "-" << elapsed() * 1000 << " ms";
     }
 };
