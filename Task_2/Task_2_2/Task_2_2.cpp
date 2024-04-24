@@ -18,7 +18,7 @@ std::mutex m4;
 static void tableHeader() { std::cout << "#\t" << "id\t" << "Progress Bar\t" << "Time" << std::endl; }
 
 
-static void progressBar(const int numberThreadsNow)
+static void progressBar(int numberThreadsNow)
 {
     
     int progress = 15;
