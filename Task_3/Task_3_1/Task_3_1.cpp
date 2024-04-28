@@ -6,58 +6,87 @@
 
 using namespace std::chrono_literals;
 
-static void sortingByChoice(std::vector<int>& vec)
+void sortingByChoice(std::vector<int>& vec)
 {
-	int n = vec.size();
+	
+	auto n = vec.size();
 
 	for (int i = 0; i < n - 1; i++)
 	{
-		int minElement = i;
-		
+		int minElement = vec[i];
+
 		for (int j = i + 1; j < n; j++)
 		{
-			if (vec[j] < vec[minElement])
+			if ((vec[j] < minElement) && (minElement != vec[j]))
 			{
-				minElement = j;
+				minElement = vec[j];
+				std::swap(vec[i], vec[j]);
 			}
-		}
-
-		if (minElement != i)
-		{
-			std::swap(vec[i], vec[minElement]);
 		}
 	}
 };
 
+void printVec(const std::vector<int>& vec)
+{
+	for (const auto& i : vec)
+	{
+		std::cout << i << " ";
+	}
+	std::cout << "\n";
+}
+
+void findMinProm(const std::vector<int> vec, int i, const int vecSize, std::promise<int> prom)
+{
+		int minIndex = i;
+
+		for (int j = i + 1; j < vecSize; j++)
+		{
+			if (vec[j] < vec[minIndex])
+			{
+				minIndex = j;
+			}
+		}
+		prom.set_value(minIndex);
+};
+
+
 int main()
 {
-	std::vector<int> vec(11);
+	std::vector<int> vec{ 6,2,3,5,9,4,1,8,7 };
+	
+	/*std::vector<int> vec(11);
 	srand(time(0));
 
 	for (size_t i = 0; i < vec.size(); i++)
 	{
 		vec[i] = std::rand() % 33;
-	}
-
-	std::cout << "Before sorting: ";
-	for (const auto& i : vec)
-	{
-		std::cout << i << " ";
-	}
-	std::cout << "\n";
-
-
-	//std::promise<void> prom;
-	//std::future<void> ft_res = prom.get_future();
-	//auto ft = std::async(sortingByChoice, std::ref(vec), std::move(prom));
-
+	}*/
+	int vecSize = vec.size();
 	
-	sortingByChoice(std::ref(vec));
+	std::cout << "Before sorting: ";
+	printVec(std::ref(vec));
+
+	for (int i = 0; i < vecSize - 1; i++)
+	{
+		std::promise<int> prom;
+		std::future<int> future_res = prom.get_future();
+
+		auto asyncFindMin = std::async(std::launch::async, findMinProm, vec, i, vecSize, std::move(prom));
+
+		int minIndex = future_res.get();
+		if (vec[i] != vec[minIndex])
+		{
+			std::swap(vec[i], vec[minIndex]);
+		}
+		//включи и увидишь по-шагаво
+		//std::cout << "Before sorting: \n";
+		//printVec(std::ref(vec));
+	}
+
+
+	//сорт без async
+	//sortingByChoice(std::ref(vec));
 	
 	std::cout << "After sorting: ";
-	for (const auto& i : vec)
-	{
-		std::cout << i << " ";
-	}
-	std::cout << "\n";
+	printVec(std::ref(vec));
 }
