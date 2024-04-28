@@ -4,8 +4,6 @@
 #include<future>
 #include<algorithm>
 
-using namespace std::chrono_literals;
-
 void sortingByChoice(std::vector<int>& vec)
 {
 	
