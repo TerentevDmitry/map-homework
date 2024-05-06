@@ -3,12 +3,19 @@
 #include <algorithm>
 #include <future>
 
+enum class dividingIntervals
+{
+    valueOfMinIntervals = 3
+
+};
+
+
 void multiplyVec(int& MultiplierVec)
 {
     MultiplierVec *= 2;
 }
 
-template <typename Iterator, size_t chunkSize = 3>
+template <typename Iterator, dividingIntervals chunkSizeOf = dividingIntervals::valueOfMinIntervals>
 void parallelForEachAsyncRecursive(Iterator begin, Iterator end)
 {
     auto currSize = std::distance(begin, end);
