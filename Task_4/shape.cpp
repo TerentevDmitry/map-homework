@@ -117,7 +117,7 @@ Shape::Shape(int _type, int _x1, int _y1, double R, double H)
 		square = M_PI * R * R;
 		break;
 	case cylinder:
-		square = M_PI * R * R + 2 * R * height;
+		square = 2 * M_PI * R * (R + height);
 		break;
 	default:
 		break;

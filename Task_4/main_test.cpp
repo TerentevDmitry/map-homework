@@ -19,22 +19,17 @@
 Shape shLine(0, 1,1,0, 3,3,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0);
 Shape shSqr(1, 1,1,0, 3,1,0, 3,3,0, 1,3,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0);
 Shape shCube(2, 1,1,1, 3,1,1, 3,1,3, 1,1,3, 1,3,3, 1,3,1, 3,3,1, 3,3,3);
-//Shape shCircle(3, 0, 0, 0, 1);
-//Shape shCylinder(4, 0, 0, 0, 1);
+Shape shCircle(3, 0, 0, 1, 0);
+Shape shCylinder(4, 0, 0, 1, 10);
 
-
-TEST_CASE("class Shape - test type and coordinates", "[testShapeType—oordinates]")
+TEST_CASE("class Shape - test Line", "[testLine]")
 {
-	SECTION("obj.getType()")
+	SECTION("shLine.getType()")
 	{
-		CHECK(shLine.getType() == 0); 
-		CHECK(shSqr.getType() == 1); 
-		CHECK(shCube.getType() == 2);
-		//CHECK(shCircle.getType() == 3);
-		//CHECK(shCylinder.getType() == 4);
+		CHECK(shLine.getType() == 0);
 	}
 
-	SECTION("coordinates shLine")
+	SECTION("coordinates Line")
 	{
 		CHECK(shLine.x1 == 1);
 		CHECK(shLine.y1 == 1);
@@ -42,7 +37,25 @@ TEST_CASE("class Shape - test type and coordinates", "[testShapeType—oordinates]
 		CHECK(shLine.y2 == 3);
 	}
 
-	SECTION("coordinates shSqr")
+	SECTION("Square Line")
+	{
+		CHECK(shLine.square == 0.0);
+	}
+
+	SECTION("Volume shLine")
+	{
+		CHECK(shLine.volume == 0.0);
+	}
+}
+
+TEST_CASE("class Shape - test Sqr", "[testSqr]")
+{
+	SECTION("shSqr.getType()")
+	{
+		CHECK(shSqr.getType() == 1);
+	}
+
+	SECTION("coordinates Sqr")
 	{
 		CHECK(shSqr.x1 == 1);
 		CHECK(shSqr.y1 == 1);
@@ -54,9 +67,27 @@ TEST_CASE("class Shape - test type and coordinates", "[testShapeType—oordinates]
 		CHECK(shSqr.y4 == 3);
 	}
 
-	SECTION("coordinates shCube")
+	SECTION("Square shSqr")
 	{
-		CHECK(shCube.x1 == 1); //1,1,1, 3,1,1, 3,1,3, 1,1,3, 1,3,3, 1,3,1, 3,3,1, 3,3,3
+		CHECK(shSqr.square == 4.0);
+	}
+
+	SECTION("Volume shSqr")
+	{
+		CHECK(shSqr.volume == 0.0);
+	}
+}
+
+TEST_CASE("class Shape - test Cube", "[testCube]")
+{
+	SECTION("shCube.getType()")
+	{
+		CHECK(shCube.getType() == 2);
+	}
+
+	SECTION("coordinates Cube")
+	{
+		CHECK(shCube.x1 == 1);
 		CHECK(shCube.y1 == 1);
 		CHECK(shCube.z1 == 1);
 		CHECK(shCube.x2 == 3);
@@ -82,89 +113,66 @@ TEST_CASE("class Shape - test type and coordinates", "[testShapeType—oordinates]
 		CHECK(shCube.z8 == 3);
 	}
 
-	//SECTION("coordinates shCircle")
-	//{
-	//	CHECK(shLine.x1 == 0);
-	//	CHECK(shLine.y1 == 0);
-	//	CHECK(shLine.x2 == 1);
-	//	CHECK(shLine.y2 == 1);
-	//}
-
-	//SECTION("coordinates shCylinder")
-	//{
-	//	CHECK(shLine.x1 == 0);
-	//	CHECK(shLine.y1 == 0);
-	//	CHECK(shLine.x2 == 1);
-	//	CHECK(shLine.y2 == 1);
-	//}
-}
-
-TEST_CASE("class Shape - test square", "[testShapeSquare]")
-{
-	SECTION("Square shLine")
-	{
-		CHECK(shLine.square == 0.0);
-	}
-
-	SECTION("Square shSqr")
-	{
-		CHECK(shSqr.square == 4.0);
-	}
-
-	SECTION("Square shCube")
+	SECTION("Square Cube")
 	{
 		CHECK(shCube.square == 24.);
 	}
 
-	//SECTION("Square shCircle")
-	//{
-	//	CHECK(shLine.x1 == 0);
-	//	CHECK(shLine.y1 == 0);
-	//	CHECK(shLine.x2 == 1);
-	//	CHECK(shLine.y2 == 1);
-	//}
-
-	//SECTION("Square shCylinder")
-	//{
-	//	CHECK(shLine.x1 == 0);
-	//	CHECK(shLine.y1 == 0);
-	//	CHECK(shLine.x2 == 1);
-	//	CHECK(shLine.y2 == 1);
-	//}
-}
-
-TEST_CASE("class Shape - test volume", "[testShapeVolume]")
-{
-	SECTION("Volume shLine")
-	{
-		CHECK(shLine.volume == 0.0);
-	}
-
-	SECTION("Volume shSqr")
-	{
-		CHECK(shSqr.volume == 0.0);
-	}
-
-	SECTION("Volume shCube")
+	SECTION("Volume Cube")
 	{
 		CHECK(shCube.volume == 8.);
 	}
+}
 
-	//SECTION("Volume shCircle")
-	//{
-	//	CHECK(shLine.x1 == 0);
-	//	CHECK(shLine.y1 == 0);
-	//	CHECK(shLine.x2 == 1);
-	//	CHECK(shLine.y2 == 1);
-	//}
+TEST_CASE("class Shape - test Circle", "[testCircle]")
+{
+	SECTION("shCircle.getType()")
+	{
+		CHECK(shCircle.getType() == 3);
+	}
 
-	//SECTION("Volume shCylinder")
-	//{
-	//	CHECK(shLine.x1 == 0);
-	//	CHECK(shLine.y1 == 0);
-	//	CHECK(shLine.x2 == 1);
-	//	CHECK(shLine.y2 == 1);
-	//}
+	SECTION("coordinates Circle")
+	{
+		CHECK(shCircle.x1 == 0);
+		CHECK(shCircle.y1 == 0);
+		CHECK(shCircle.radius == 1.);
+	}
+
+	SECTION("Square Circle")
+	{
+		CHECK(shCircle.square == 3.14159265358979312);
+	}
+
+	SECTION("Volume Circle")
+	{
+		CHECK(shCircle.volume == 0.);
+	}
+}
+
+TEST_CASE("class Shape - test Cylinder", "[testCylinder]")
+{
+	SECTION("shCylinder.getType()")
+	{
+		CHECK(shCylinder.getType() == 4);
+	}
+
+	SECTION("coordinates Cylinder")
+	{
+		CHECK(shCylinder.x1 == 0);
+		CHECK(shCylinder.y1 == 0);
+		CHECK(shCylinder.radius == 1.);
+		CHECK(shCylinder.height == 10.);
+	}
+
+	SECTION("Square Cylinder")
+	{
+		CHECK(shCylinder.square == 69.11503837897544145);
+	}
+
+	SECTION("Volume Cylinder")
+	{
+		CHECK(shCylinder.volume == 31.41592653589793116);
+	}
 }
 
 
