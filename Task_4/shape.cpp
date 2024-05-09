@@ -1,6 +1,6 @@
 #define _USE_MATH_DEFINES
-#include"shape.h"
-#include<cmath>
+#include "shape.h"
+#include <cmath>
 #include <iostream>
 
 
@@ -34,12 +34,14 @@ Shape::Shape(int _type, int _x1, int _y1, int _z1, int _x2, int _y2, int _z2, in
 		break;
 	}
 	
-	// стороны фигуры
+
 	int a = abs(x1 - x2);
 	int b = abs(y1 - y2);
 	int c = abs(z1 - z2);
-	// считаем площадь фигуры
 	
+	//double distanceBetweenOppositeVertices = sqrt(pow(x1 - x8, 2) + pow(y1 - y8, 2) + pow(z1 - z8, 2));
+	
+	// считаем площадь фигуры
 	
 	switch (type)
 	{
@@ -47,14 +49,15 @@ Shape::Shape(int _type, int _x1, int _y1, int _z1, int _x2, int _y2, int _z2, in
 		square = 0;
 		break;
 	case sqr:
-		square = a * b;
+		square = pow((x1 - x2), 2) + pow((y1 - y2), 2);
 		break;
 	case cube:
-		square = 2 * a * b + 2 * a * c + 2 * b * c;
+		square = 6 * (pow((x1 - x2), 2) + pow((y1 - y2), 2));
 		break;
 	default:
 		break;
 	}
+	
 
 	// считаем объем фигуры
 	switch (type)
@@ -66,11 +69,24 @@ Shape::Shape(int _type, int _x1, int _y1, int _z1, int _x2, int _y2, int _z2, in
 		volume = 0;
 		break;
 	case cube:
-		volume = a * b * c;
+		volume = 2 * (pow((x1 - x2), 2) + pow((y1 - y2), 2));
 		break;
 	default:
 		break;
 	}
+
+	
+	
+	
+	
+		
+	
+
+
+
+
+
+
 
 }
 

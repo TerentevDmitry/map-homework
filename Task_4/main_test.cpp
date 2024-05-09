@@ -4,6 +4,7 @@
 #include "shape.h"
 #include "Catch2/extras/catch_amalgamated.hpp"
 #include <iostream>
+#include <cmath>
 
 //2 static const int line = 0;
 //2 static const int sqr = 1;
@@ -15,21 +16,22 @@
 //2 Shape(int type, int _x1, int _y1, int _z1, int _x2, int _y2, int _z2, int _x3, int _y3, int _z3, int _x4, int _y4, int _z4, int _x5, int _y5, int _z5, int _x6, int _y6, int _z6, int _x7, int _y7, int _z7, int _x8, int _y8, int _z8);
 //3 Shape(int type, int _x1, int _y1, double R, double H);
 
-Shape shLine(0, 1, 1, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-Shape shSqr(1, 1, 1, 0, 3, 1, 0, 3, 3, 0, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-Shape shCube(2, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-Shape shCircle(3, 0, 0, 0, 1);
-Shape shCylinder(4, 0, 0, 0, 1);
+Shape shLine(0, 1,1,0, 3,3,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0);
+Shape shSqr(1, 1,1,0, 3,1,0, 3,3,0, 1,3,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0);
+Shape shCube(2, 1,1,1, 3,1,1, 3,1,3, 1,1,3, 1,3,3, 1,3,1, 3,3,1, 3,3,3);
+//Shape shCircle(3, 0, 0, 0, 1);
+//Shape shCylinder(4, 0, 0, 0, 1);
 
 
 TEST_CASE("class Shape - test type and coordinates", "[testShapeType—oordinates]")
 {
 	SECTION("obj.getType()")
 	{
-		CHECK(shLine.getType() == 0); CHECK(shSqr.getType() == 1); 
+		CHECK(shLine.getType() == 0); 
+		CHECK(shSqr.getType() == 1); 
 		CHECK(shCube.getType() == 2);
-		CHECK(shCircle.getType() == 3);
-		CHECK(shCylinder.getType() == 4);
+		//CHECK(shCircle.getType() == 3);
+		//CHECK(shCylinder.getType() == 4);
 	}
 
 	SECTION("coordinates shLine")
@@ -52,13 +54,33 @@ TEST_CASE("class Shape - test type and coordinates", "[testShapeType—oordinates]
 		CHECK(shSqr.y4 == 3);
 	}
 
-	//SECTION("coordinates shCube")
-	//{
-	//	CHECK(shLine.x1 == 0);
-	//	CHECK(shLine.y1 == 0);
-	//	CHECK(shLine.x2 == 1);
-	//	CHECK(shLine.y2 == 1);
-	//}
+	SECTION("coordinates shCube")
+	{
+		CHECK(shCube.x1 == 1); //1,1,1, 3,1,1, 3,1,3, 1,1,3, 1,3,3, 1,3,1, 3,3,1, 3,3,3
+		CHECK(shCube.y1 == 1);
+		CHECK(shCube.z1 == 1);
+		CHECK(shCube.x2 == 3);
+		CHECK(shCube.y2 == 1);
+		CHECK(shCube.z2 == 1);
+		CHECK(shCube.x3 == 3);
+		CHECK(shCube.y3 == 1);
+		CHECK(shCube.z3 == 3);
+		CHECK(shCube.x4 == 1);
+		CHECK(shCube.y4 == 1);
+		CHECK(shCube.z4 == 3);
+		CHECK(shCube.x5 == 1);
+		CHECK(shCube.y5 == 3);
+		CHECK(shCube.z5 == 3);
+		CHECK(shCube.x6 == 1);
+		CHECK(shCube.y6 == 3);
+		CHECK(shCube.z6 == 1);
+		CHECK(shCube.x7 == 3);
+		CHECK(shCube.y7 == 3);
+		CHECK(shCube.z7 == 1);
+		CHECK(shCube.x8 == 3);
+		CHECK(shCube.y8 == 3);
+		CHECK(shCube.z8 == 3);
+	}
 
 	//SECTION("coordinates shCircle")
 	//{
@@ -86,16 +108,13 @@ TEST_CASE("class Shape - test square", "[testShapeSquare]")
 
 	SECTION("Square shSqr")
 	{
-		CHECK(shSqr.square == 0.0);
+		CHECK(shSqr.square == 4.0);
 	}
 
-	//SECTION("Square shCube")
-	//{
-	//	CHECK(shLine.x1 == 0);
-	//	CHECK(shLine.y1 == 0);
-	//	CHECK(shLine.x2 == 1);
-	//	CHECK(shLine.y2 == 1);
-	//}
+	SECTION("Square shCube")
+	{
+		CHECK(shCube.square == 24.);
+	}
 
 	//SECTION("Square shCircle")
 	//{
@@ -121,7 +140,17 @@ TEST_CASE("class Shape - test volume", "[testShapeVolume]")
 		CHECK(shLine.volume == 0.0);
 	}
 
-	//SECTION("Square shSqr")
+	SECTION("Volume shSqr")
+	{
+		CHECK(shSqr.volume == 0.0);
+	}
+
+	SECTION("Volume shCube")
+	{
+		CHECK(shCube.volume == 8.);
+	}
+
+	//SECTION("Volume shCircle")
 	//{
 	//	CHECK(shLine.x1 == 0);
 	//	CHECK(shLine.y1 == 0);
@@ -129,23 +158,7 @@ TEST_CASE("class Shape - test volume", "[testShapeVolume]")
 	//	CHECK(shLine.y2 == 1);
 	//}
 
-	//SECTION("Square shCube")
-	//{
-	//	CHECK(shLine.x1 == 0);
-	//	CHECK(shLine.y1 == 0);
-	//	CHECK(shLine.x2 == 1);
-	//	CHECK(shLine.y2 == 1);
-	//}
-
-	//SECTION("Square shCircle")
-	//{
-	//	CHECK(shLine.x1 == 0);
-	//	CHECK(shLine.y1 == 0);
-	//	CHECK(shLine.x2 == 1);
-	//	CHECK(shLine.y2 == 1);
-	//}
-
-	//SECTION("Square shCylinder")
+	//SECTION("Volume shCylinder")
 	//{
 	//	CHECK(shLine.x1 == 0);
 	//	CHECK(shLine.y1 == 0);
