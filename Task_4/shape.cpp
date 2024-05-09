@@ -4,23 +4,6 @@
 #include <iostream>
 
 
-std::string stri(std::string str)
-{
-	std::cout << str << std::endl;
-	return str;
-}
-
-int nume(int num)
-{
-	std::cout << num << std::endl;
-	return num;
-}
-
-
-
-
-
-
 Shape::Shape(int _type, int _x1, int _y1, int _z1, int _x2, int _y2, int _z2, int _x3, int _y3, int _z3, int _x4, int _y4, int _z4, int _x5, int _y5, int _z5, int _x6, int _y6, int _z6, int _x7, int _y7, int _z7, int _x8, int _y8, int _z8)
 {
 	type = _type;
@@ -56,6 +39,8 @@ Shape::Shape(int _type, int _x1, int _y1, int _z1, int _x2, int _y2, int _z2, in
 	int b = abs(y1 - y2);
 	int c = abs(z1 - z2);
 	// считаем площадь фигуры
+	
+	
 	switch (type)
 	{
 	case line:
@@ -89,8 +74,10 @@ Shape::Shape(int _type, int _x1, int _y1, int _z1, int _x2, int _y2, int _z2, in
 
 }
 
-Shape::Shape(int type, int _x1, int _y1, double R, double H)
+Shape::Shape(int _type, int _x1, int _y1, double R, double H)
 {
+	type = _type;
+
 	// заполн¤ем координаты фигуры
 	switch (type)
 	{

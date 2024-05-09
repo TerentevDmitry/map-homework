@@ -32,4 +32,11 @@ public:
 	double square;
 	double height;
 	double radius;
+
+	int getSquareSqr() const
+	{
+		return SquareSqr();
+	}
+
+
 };
