@@ -8,10 +8,10 @@
 #include <cmath>
 
 Shape shLine(static_cast<int> (nameOfShapes::line), 1,1,0, 3,3,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0);
-Shape shSqr(1, 1,1,0, 3,1,0, 3,3,0, 1,3,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0);
-Shape shCube(2, 1,1,1, 3,1,1, 3,1,3, 1,1,3, 1,3,3, 1,3,1, 3,3,1, 3,3,3);
-Shape shCircle(3, 0, 0, 1, 0);
-Shape shCylinder(4, 0, 0, 1, 10);
+Shape shSqr(static_cast<int> (nameOfShapes::sqr), 1,1,0, 3,1,0, 3,3,0, 1,3,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0);
+Shape shCube(static_cast<int> (nameOfShapes::cube), 1,1,1, 3,1,1, 3,1,3, 1,1,3, 1,3,3, 1,3,1, 3,3,1, 3,3,3);
+Shape shCircle(static_cast<int> (nameOfShapes::circle), 0, 0, 1, 0);
+Shape shCylinder(static_cast<int> (nameOfShapes::cylinder), 0, 0, 1, 10);
 
 TEST_CASE("class Shape - test Line", "[testLineShape]")
 {
@@ -30,12 +30,12 @@ TEST_CASE("class Shape - test Line", "[testLineShape]")
 
 	SECTION("Square Line")
 	{
-		CHECK(shLine.square == 0.0);
+		CHECK(shLine.getSquare() == 0.0);
 	}
 
 	SECTION("Volume Line")
 	{
-		CHECK(shLine.volume == 0.0);
+		CHECK(shLine.getVolume() == 0.0);
 	}
 }
 
@@ -60,12 +60,12 @@ TEST_CASE("class Shape - test Sqr", "[testSqrShape]")
 
 	SECTION("Square shSqr")
 	{
-		CHECK(shSqr.square == 4.0);
+		CHECK(shSqr.getSquare() == 4.0);
 	}
 
 	SECTION("Volume shSqr")
 	{
-		CHECK(shSqr.volume == 0.0);
+		CHECK(shSqr.getVolume() == 0.0);
 	}
 }
 
@@ -106,12 +106,12 @@ TEST_CASE("class Shape - test Cube", "[testCubeShape]")
 
 	SECTION("Square Cube")
 	{
-		CHECK(shCube.square == 24.);
+		CHECK(shCube.getSquare() == 24.);
 	}
 
 	SECTION("Volume Cube")
 	{
-		CHECK(shCube.volume == 8.);
+		CHECK(shCube.getVolume() == 8.);
 	}
 }
 
@@ -126,17 +126,17 @@ TEST_CASE("class Shape - test Circle", "[testCircleShape]")
 	{
 		CHECK(shCircle.x1 == 0);
 		CHECK(shCircle.y1 == 0);
-		CHECK(shCircle.radius == 1.);
+		CHECK(shCircle.getRadius() == 1.);
 	}
 
 	SECTION("Square Circle")
 	{
-		CHECK(shCircle.square == 3.14159265358979312);
+		CHECK(shCircle.getSquare() == 3.14159265358979312);
 	}
 
 	SECTION("Volume Circle")
 	{
-		CHECK(shCircle.volume == 0.);
+		CHECK(shCircle.getVolume() == 0.);
 	}
 }
 
@@ -151,18 +151,18 @@ TEST_CASE("class Shape - test Cylinder", "[testCylinderShape]")
 	{
 		CHECK(shCylinder.x1 == 0);
 		CHECK(shCylinder.y1 == 0);
-		CHECK(shCylinder.radius == 1.);
-		CHECK(shCylinder.height == 10.);
+		CHECK(shCylinder.getRadius() == 1.);
+		CHECK(shCylinder.getHeight() == 10.);
 	}
 
 	SECTION("Square Cylinder")
 	{
-		CHECK(shCylinder.square == 69.11503837897544145);
+		CHECK(shCylinder.getSquare() == 69.11503837897544145);
 	}
 
 	SECTION("Volume Cylinder")
 	{
-		CHECK(shCylinder.volume == 31.41592653589793116);
+		CHECK(shCylinder.getVolume() == 31.41592653589793116);
 	}
 }
 
@@ -217,12 +217,12 @@ TEST_CASE("class Transform - test Line", "[testLineTransform]")
 
 		SECTION("Square Line after Shift")
 		{
-			CHECK(trLine.shape.square == 0.0);
+			CHECK(trLine.shape.getSquare() == 0.0);
 		}
 
 		SECTION("Volume Line after Shift")
 		{
-			CHECK(trLine.shape.volume == 0.0);
+			CHECK(trLine.shape.getVolume() == 0.0);
 		}
 	}
 
@@ -241,12 +241,12 @@ TEST_CASE("class Transform - test Line", "[testLineTransform]")
 
 		SECTION("Square Line after ScaleX")
 		{
-			CHECK(trLine.shape.square == 0.0);
+			CHECK(trLine.shape.getSquare() == 0.0);
 		}
 
 		SECTION("Volume Line after ScaleX")
 		{
-			CHECK(trLine.shape.volume == 0.0);
+			CHECK(trLine.shape.getVolume() == 0.0);
 		}
 	}
 
@@ -265,12 +265,12 @@ TEST_CASE("class Transform - test Line", "[testLineTransform]")
 
 		SECTION("Square Line after ScaleY")
 		{
-			CHECK(trLine.shape.square == 0.0);
+			CHECK(trLine.shape.getSquare() == 0.0);
 		}
 
 		SECTION("Volume Line after ScaleY")
 		{
-			CHECK(trLine.shape.volume == 0.0);
+			CHECK(trLine.shape.getVolume() == 0.0);
 		}
 	}
 
@@ -287,12 +287,12 @@ TEST_CASE("class Transform - test Line", "[testLineTransform]")
 
 		SECTION("Square Line after ScaleZ")
 		{
-			CHECK(trLine.shape.square == 0.0);
+			CHECK(trLine.shape.getSquare() == 0.0);
 		}
 
 		SECTION("Volume Line after ScaleZ")
 		{
-			CHECK(trLine.shape.volume == 0.0);
+			CHECK(trLine.shape.getVolume() == 0.0);
 		}
 	}
 
@@ -311,12 +311,12 @@ TEST_CASE("class Transform - test Line", "[testLineTransform]")
 
 		SECTION("Square Line after Scale")
 		{
-			CHECK(trLine.shape.square == 0.0);
+			CHECK(trLine.shape.getSquare() == 0.0);
 		}
 
 		SECTION("Volume Line after Scale")
 		{
-			CHECK(trLine.shape.volume == 0.0);
+			CHECK(trLine.shape.getVolume() == 0.0);
 		}
 	}
 
@@ -373,12 +373,12 @@ TEST_CASE("class Transform - test Sqr", "[testSqrTransform]")
 
 		SECTION("Square Sqr after Shift")
 		{
-			CHECK(trSqr.shape.square == 4.0);
+			CHECK(trSqr.shape.getSquare() == 4.0);
 		}
 
 		SECTION("Volume Sqr after Shift")
 		{
-			CHECK(trSqr.shape.volume == 0.0);
+			CHECK(trSqr.shape.getVolume() == 0.0);
 		}
 	}
 
@@ -401,12 +401,12 @@ TEST_CASE("class Transform - test Sqr", "[testSqrTransform]")
 
 		SECTION("Square Sqr after ScaleX")
 		{
-			CHECK(trSqr.shape.square == 4.0);
+			CHECK(trSqr.shape.getSquare() == 4.0);
 		}
 
 		SECTION("Volume Sqr after ScaleX")
 		{
-			CHECK(trSqr.shape.volume == 0.0);
+			CHECK(trSqr.shape.getVolume() == 0.0);
 		}
 	}
 
@@ -429,12 +429,12 @@ TEST_CASE("class Transform - test Sqr", "[testSqrTransform]")
 
 		SECTION("Square Sqr after ScaleY")
 		{
-			CHECK(trSqr.shape.square == 4.0);
+			CHECK(trSqr.shape.getSquare() == 4.0);
 		}
 
 		SECTION("Volume Sqr after ScaleY")
 		{
-			CHECK(trSqr.shape.volume == 0.0);
+			CHECK(trSqr.shape.getVolume() == 0.0);
 		}
 	}
 
@@ -453,12 +453,12 @@ TEST_CASE("class Transform - test Sqr", "[testSqrTransform]")
 
 		SECTION("Square Sqr after ScaleZ")
 		{
-			CHECK(trSqr.shape.square == 4.0);
+			CHECK(trSqr.shape.getSquare() == 4.0);
 		}
 
 		SECTION("Volume Sqr after ScaleZ")
 		{
-			CHECK(trSqr.shape.volume == 0.0);
+			CHECK(trSqr.shape.getVolume() == 0.0);
 		}
 	}
 
@@ -481,12 +481,12 @@ TEST_CASE("class Transform - test Sqr", "[testSqrTransform]")
 
 		SECTION("Square Sqr after Scale")
 		{
-			CHECK(trSqr.shape.square == 4.0);
+			CHECK(trSqr.shape.getSquare() == 4.0);
 		}
 
 		SECTION("Volume Sqr after Scale")
 		{
-			CHECK(trSqr.shape.volume == 0.0);
+			CHECK(trSqr.shape.getVolume() == 0.0);
 		}
 	}
 
@@ -561,12 +561,12 @@ TEST_CASE("class Transform - test Cube", "[testCubeTransform]")
 
 		SECTION("Square Cube after Shift")
 		{
-			CHECK(trCube.shape.square == 24.0);
+			CHECK(trCube.shape.getSquare() == 24.0);
 		}
 
 		SECTION("Volume Cube after Shift")
 		{
-			CHECK(trCube.shape.volume == 8.0);
+			CHECK(trCube.shape.getVolume() == 8.0);
 		}
 	}
 
@@ -605,12 +605,12 @@ TEST_CASE("class Transform - test Cube", "[testCubeTransform]")
 
 		SECTION("Square Cube after ScaleX")
 		{
-			CHECK(trCube.shape.square == 24.0);
+			CHECK(trCube.shape.getSquare() == 24.0);
 		}
 
 		SECTION("Volume Cube after ScaleX")
 		{
-			CHECK(trCube.shape.volume == 8.0);
+			CHECK(trCube.shape.getVolume() == 8.0);
 		}
 	}
 
@@ -649,12 +649,12 @@ TEST_CASE("class Transform - test Cube", "[testCubeTransform]")
 
 		SECTION("Square Cube after ScaleY")
 		{
-			CHECK(trCube.shape.square == 24.0);
+			CHECK(trCube.shape.getSquare() == 24.0);
 		}
 
 		SECTION("Volume Cube after ScaleY")
 		{
-			CHECK(trCube.shape.volume == 8.0);
+			CHECK(trCube.shape.getVolume() == 8.0);
 		}
 	}
 
@@ -693,12 +693,12 @@ TEST_CASE("class Transform - test Cube", "[testCubeTransform]")
 
 		SECTION("Square Cube after ScaleZ")
 		{
-			CHECK(trCube.shape.square == 24.0);
+			CHECK(trCube.shape.getSquare() == 24.0);
 		}
 
 		SECTION("Volume Cube after ScaleZ")
 		{
-			CHECK(trCube.shape.volume == 8.0);
+			CHECK(trCube.shape.getVolume() == 8.0);
 		}
 	}
 
@@ -737,12 +737,12 @@ TEST_CASE("class Transform - test Cube", "[testCubeTransform]")
 
 		SECTION("Square Cube after Scale")
 		{
-			CHECK(trCube.shape.square == 24.0);
+			CHECK(trCube.shape.getSquare() == 24.0);
 		}
 
 		SECTION("Volume Cube after Scale")
 		{
-			CHECK(trCube.shape.volume == 8.0);
+			CHECK(trCube.shape.getVolume() == 8.0);
 		}
 	}
 
