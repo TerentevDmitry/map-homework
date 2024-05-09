@@ -9,7 +9,7 @@ Shape transform::shift(int m, int n, int k)
 {
 	switch (shape.getType())
 	{
-	case Shape::line:
+	case static_cast<int> (nameOfShapes::line):
 		shape.x1 += m; shape.y1 += n;
 		shape.x2 += m; shape.y2 += n;
 		break;
@@ -37,7 +37,7 @@ Shape transform::scaleX(int a)
 {
 	switch (shape.getType())
 	{
-	case Shape::line:
+	case static_cast<int> (nameOfShapes::line):
 		shape.x1 *= a;
 		shape.x2 *= a;
 		break;
@@ -65,7 +65,7 @@ Shape transform::scaleY(int d)
 {
 	switch (shape.getType())
 	{
-	case Shape::line:
+	case static_cast<int> (nameOfShapes::line):
 		shape.y1 *= d;
 		shape.y2 *= d;
 		break;
@@ -93,7 +93,7 @@ Shape transform::scaleZ(int e)
 {
 	switch (shape.getType())
 	{
-	case Shape::line:
+	case static_cast<int> (nameOfShapes::line):
 		shape.z1 *= e;
 		shape.z2 *= e;
 		break;
@@ -105,7 +105,7 @@ Shape transform::scaleZ(int e)
 		break;
 	case Shape::cube:
 		shape.z1 *= e;
-		shape.y2 *= e;
+		shape.z2 *= e;
 		shape.z3 *= e;
 		shape.z4 *= e;
 		shape.z5 *= e;
@@ -121,7 +121,7 @@ Shape transform::scale(int s)
 {
 	switch (shape.getType())
 	{
-	case Shape::line:
+	case static_cast<int> (nameOfShapes::line):
 		shape.x1 /= s; shape.y1 /= s;
 		shape.x2 /= s; shape.y2 /= s;
 		break;

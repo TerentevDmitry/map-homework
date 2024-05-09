@@ -1,12 +1,21 @@
 #pragma once
 #include<string>
 
+enum class nameOfShapes
+{
+	line = 0, sqr = 1, cube = 2, circle = 3, cylinder = 4
+};
+
+
+
+
+
+
 class Shape
 {
 private:
-	// стороны фигуры
-	
 
+	static const int line = static_cast<int> (nameOfShapes::line);
 	
 
 
@@ -21,19 +30,18 @@ public:
 	
 	
 	
-	int getType() { return type; }
+	int getType() const { return type; }
 
 	
 
-	//void getSquareSqr();
-
-
-
-	static const int line = 0;
+	
 	static const int sqr = 1;
 	static const int cube = 2;
 	static const int circle = 3;
 	static const int cylinder = 4;
+
+
+	
 
 	int type = 0;
 	int x1 = 0, y1 = 0, z1 = 0,
