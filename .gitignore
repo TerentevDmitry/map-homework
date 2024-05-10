@@ -4,7 +4,7 @@
 # Catch2 path
 Catch2/
 out/
-
+Catch2-build/
 
 ### C++ ###
 # Prerequisites
