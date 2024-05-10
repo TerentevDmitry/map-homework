@@ -70,6 +70,27 @@ public:
 	double getHeight() const;
 	double getRadius() const;
 	
+	void shiftLine(int m, int n);
+	void shiftSqr(int m, int n);
+	void shiftCube(int m, int n, int k);
+	
+	void scaleXLine(int a);
+	void scaleXSqr(int a);
+	void scaleXCube(int a);
+		
+	void scaleYLine(int d);
+	void scaleYSqr(int d);
+	void scaleYCube(int d);
+	
+	void scaleZLine(int e);
+	void scaleZSqr(int e);
+	void scaleZCube(int e);
+
+	void scaleLine(int s);
+	void scaleSqr(int s);
+	void scaleCube(int s);
+
+
 	int x1 = 0, y1 = 0, z1 = 0,
 		x2 = 0, y2 = 0, z2 = 0,
 		x3 = 0, y3 = 0, z3 = 0,
