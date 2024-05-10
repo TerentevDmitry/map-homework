@@ -3,59 +3,6 @@
 #include <cmath>
 #include <iostream>
 
-
-
-
-Shape::Shape(int _type, int _x1, int _y1, double R, double H)
-{
-	type = _type;
-
-	// заполн¤ем координаты фигуры
-	switch (type)
-	{
-	case circle:
-		x1 = _x1; y1 = _y1;
-		radius = R;
-		break;
-	case cylinder:
-		x1 = _x1; y1 = _y1;
-		radius = R;
-		height = H;
-		break;
-	default:
-		break;
-	}
-
-	// считаем площадь фигуры
-	switch (type)
-	{
-	case circle:
-		square = M_PI * R * R;
-		break;
-	case cylinder:
-		square = 2 * M_PI * R * (R + height);
-		break;
-	default:
-		break;
-	}
-
-	// считаем объем фигуры
-	switch (type)
-	{
-	case circle:
-		volume = 0;
-		break;
-	case cylinder:
-		volume = M_PI * R * R * height;
-		break;
-	default:
-		break;
-	}
-
-}
-
-
-
 Shape::Shape(int _x1, int _y1, int _x2, int _y2)
 {
 	type = static_cast<int> (nameOfShapes::line);
@@ -89,6 +36,25 @@ Shape::Shape(int _x1, int _y1, int _z1, int _x2, int _y2, int _z2, int _x3, int 
 	x8 = _x8; y8 = _y8; z8 = _z8;
 	square = 6 * (pow((x1 - x2), 2) + pow((y1 - y2), 2));
 	volume = 2 * (pow((x1 - x2), 2) + pow((y1 - y2), 2));
+}
+
+Shape::Shape(int _x1, int _y1, double R)
+{
+	type = static_cast<int> (nameOfShapes::circle);
+	x1 = _x1; y1 = _y1;
+	radius = R;
+	square = M_PI * R * R;
+	volume = 0.;
+}
+
+Shape::Shape(int _x1, int _y1, double R, double H)
+{
+	type = static_cast<int> (nameOfShapes::cylinder);
+	x1 = _x1; y1 = _y1;
+	radius = R;
+	height = H;
+	square = 2 * M_PI * R * (R + height);
+	volume = M_PI * R * R * height;
 }
 
 

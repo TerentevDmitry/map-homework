@@ -13,11 +13,10 @@ Shape shLine(1, 1, 3, 3);
 Shape shSqr(1, 1, 3, 1, 3, 3, 1, 3);
 //Shape shCube(static_cast<int> (nameOfShapes::cube), 1,1,1, 3,1,1, 3,1,3, 1,1,3, 1,3,3, 1,3,1, 3,3,1, 3,3,3);
 Shape shCube(1, 1, 1, 3, 1, 1, 3, 1, 3, 1, 1, 3, 1, 3, 3, 1, 3, 1, 3, 3, 1, 3, 3, 3);
-
-
-
-Shape shCircle(static_cast<int> (nameOfShapes::circle), 0, 0, 1, 0);
-Shape shCylinder(static_cast<int> (nameOfShapes::cylinder), 0, 0, 1, 10);
+//Shape shCircle(static_cast<int> (nameOfShapes::circle), 0, 0, 1, 0);
+Shape shCircle(0, 0, 1);
+//Shape shCylinder(static_cast<int> (nameOfShapes::cylinder), 0, 0, 1, 10);
+Shape shCylinder(0, 0, 1., 10.);
 
 TEST_CASE("class Shape - test Line", "[testLineShape]")
 {
@@ -763,7 +762,7 @@ TEST_CASE("class Transform - test Cube", "[testCubeTransform]")
 int main(int argc, char* argv[])
 {
 	
-
+	
 
 
 
