@@ -166,36 +166,37 @@ TEST_CASE("class Shape - test Cylinder", "[testCylinderShape]")
 	}
 }
 
-transform trLine(shLine);
-transform trSqr(shSqr);
-transform trCube(shCube);
+
+//transform trLine(shLine);
+//transform trSqr(shSqr);
+//transform trCube(shCube);
 
 //***************************************************************************************
 
 std::once_flag flag1;
 void trLineShift(const int shX, const int shY)
 {
-	trLine.shift(shX, shY, 0);
+	shLine.shiftLine(shX, shY);
 }
 std::once_flag flag2;
 void trLineScaleX(const int scX)
 {
-	trLine.scaleX(scX);
+	shLine.scaleXLine(scX);
 }
 std::once_flag flag3;
 void trLineScaleY(const int scY)
 {
-	trLine.scaleY(scY);
+	shLine.scaleYLine(scY);
 }
 std::once_flag flag4;
 void trLineScaleZ(const int scZ)
 {
-	trLine.scaleZ(scZ);
+	shLine.scaleZLine(scZ);
 }
 std::once_flag flag5;
 void trLineScale(const int sc)
 {
-	trLine.scale(sc);
+	shLine.scaleLine(sc);
 }
 
 TEST_CASE("class Transform - test Line", "[testLineTransform]")
@@ -209,20 +210,20 @@ TEST_CASE("class Transform - test Line", "[testLineTransform]")
 		SECTION("coordinates Line after Shift")
 		{
 
-			CHECK(trLine.shape.x1 == 1 + shX);
-			CHECK(trLine.shape.y1 == 1 + shY);
-			CHECK(trLine.shape.x2 == 3 + shX);
-			CHECK(trLine.shape.y2 == 3 + shY);
+			CHECK(shLine.x1 == 1 + shX);
+			CHECK(shLine.y1 == 1 + shY);
+			CHECK(shLine.x2 == 3 + shX);
+			CHECK(shLine.y2 == 3 + shY);
 		}
 
 		SECTION("Square Line after Shift")
 		{
-			CHECK(trLine.shape.getSquare() == 0.0);
+			CHECK(shLine.getSquare() == 0.0);
 		}
 
 		SECTION("Volume Line after Shift")
 		{
-			CHECK(trLine.shape.getVolume() == 0.0);
+			CHECK(shLine.getVolume() == 0.0);
 		}
 	}
 
@@ -233,20 +234,20 @@ TEST_CASE("class Transform - test Line", "[testLineTransform]")
 
 		SECTION("coordinates Line after ScaleX")
 		{
-			CHECK(trLine.shape.x1 == 6);
-			CHECK(trLine.shape.y1 == 3);
-			CHECK(trLine.shape.x2 == 12);
-			CHECK(trLine.shape.y2 == 5);
+			CHECK(shLine.x1 == 6);
+			CHECK(shLine.y1 == 3);
+			CHECK(shLine.x2 == 12);
+			CHECK(shLine.y2 == 5);
 		}
 
 		SECTION("Square Line after ScaleX")
 		{
-			CHECK(trLine.shape.getSquare() == 0.0);
+			CHECK(shLine.getSquare() == 0.0);
 		}
 
 		SECTION("Volume Line after ScaleX")
 		{
-			CHECK(trLine.shape.getVolume() == 0.0);
+			CHECK(shLine.getVolume() == 0.0);
 		}
 	}
 
@@ -257,20 +258,20 @@ TEST_CASE("class Transform - test Line", "[testLineTransform]")
 
 		SECTION("coordinates Line after ScaleY")
 		{
-			CHECK(trLine.shape.x1 == 6);
-			CHECK(trLine.shape.y1 == 12);
-			CHECK(trLine.shape.x2 == 12);
-			CHECK(trLine.shape.y2 == 20);
+			CHECK(shLine.x1 == 6);
+			CHECK(shLine.y1 == 12);
+			CHECK(shLine.x2 == 12);
+			CHECK(shLine.y2 == 20);
 		}
 
 		SECTION("Square Line after ScaleY")
 		{
-			CHECK(trLine.shape.getSquare() == 0.0);
+			CHECK(shLine.getSquare() == 0.0);
 		}
 
 		SECTION("Volume Line after ScaleY")
 		{
-			CHECK(trLine.shape.getVolume() == 0.0);
+			CHECK(shLine.getVolume() == 0.0);
 		}
 	}
 
@@ -281,18 +282,18 @@ TEST_CASE("class Transform - test Line", "[testLineTransform]")
 
 		SECTION("coordinates Line after ScaleZ")
 		{
-			CHECK(trLine.shape.z1 == 0);
-			CHECK(trLine.shape.z2 == 0);
+			CHECK(shLine.z1 == 0);
+			CHECK(shLine.z2 == 0);
 		}
 
 		SECTION("Square Line after ScaleZ")
 		{
-			CHECK(trLine.shape.getSquare() == 0.0);
+			CHECK(shLine.getSquare() == 0.0);
 		}
 
 		SECTION("Volume Line after ScaleZ")
 		{
-			CHECK(trLine.shape.getVolume() == 0.0);
+			CHECK(shLine.getVolume() == 0.0);
 		}
 	}
 
@@ -303,20 +304,20 @@ TEST_CASE("class Transform - test Line", "[testLineTransform]")
 
 		SECTION("coordinates Line after Scale")
 		{
-			CHECK(trLine.shape.x1 == 3);
-			CHECK(trLine.shape.y1 == 6);
-			CHECK(trLine.shape.x2 == 6);
-			CHECK(trLine.shape.y2 == 10);
+			CHECK(shLine.x1 == 3);
+			CHECK(shLine.y1 == 6);
+			CHECK(shLine.x2 == 6);
+			CHECK(shLine.y2 == 10);
 		}
 
 		SECTION("Square Line after Scale")
 		{
-			CHECK(trLine.shape.getSquare() == 0.0);
+			CHECK(shLine.getSquare() == 0.0);
 		}
 
 		SECTION("Volume Line after Scale")
 		{
-			CHECK(trLine.shape.getVolume() == 0.0);
+			CHECK(shLine.getVolume() == 0.0);
 		}
 	}
 
@@ -328,27 +329,27 @@ TEST_CASE("class Transform - test Line", "[testLineTransform]")
 std::once_flag flag6;
 void trSqrShift(const int shX, const int shY)
 {
-	trSqr.shift(shX, shY, 0);
+	shSqr.shiftSqr(shX, shY);
 }
 std::once_flag flag7;
 void trSqrScaleX(const int scX)
 {
-	trSqr.scaleX(scX);
+	shSqr.scaleXSqr(scX);
 }
 std::once_flag flag8;
 void trSqrScaleY(const int scY)
 {
-	trSqr.scaleY(scY);
+	shSqr.scaleYSqr(scY);
 }
 std::once_flag flag9;
 void trSqrScaleZ(const int scZ)
 {
-	trSqr.scaleZ(scZ);
+	shSqr.scaleZSqr(scZ);
 }
 std::once_flag flag10;
 void trSqrScale(const int sc)
 {
-	trSqr.scale(sc);
+	shSqr.scaleSqr(sc);
 }
 
 TEST_CASE("class Transform - test Sqr", "[testSqrTransform]")
@@ -361,24 +362,24 @@ TEST_CASE("class Transform - test Sqr", "[testSqrTransform]")
 
 		SECTION("coordinates Sqr after Shift")
 		{
-			CHECK(trSqr.shape.x1 == 2);
-			CHECK(trSqr.shape.y1 == 3);
-			CHECK(trSqr.shape.x2 == 4);
-			CHECK(trSqr.shape.y2 == 3);
-			CHECK(trSqr.shape.x3 == 4);
-			CHECK(trSqr.shape.y3 == 5);
-			CHECK(trSqr.shape.x4 == 2);
-			CHECK(trSqr.shape.y4 == 5);
+			CHECK(shSqr.x1 == 2);
+			CHECK(shSqr.y1 == 3);
+			CHECK(shSqr.x2 == 4);
+			CHECK(shSqr.y2 == 3);
+			CHECK(shSqr.x3 == 4);
+			CHECK(shSqr.y3 == 5);
+			CHECK(shSqr.x4 == 2);
+			CHECK(shSqr.y4 == 5);
 		}
 
 		SECTION("Square Sqr after Shift")
 		{
-			CHECK(trSqr.shape.getSquare() == 4.0);
+			CHECK(shSqr.getSquare() == 4.0);
 		}
 
 		SECTION("Volume Sqr after Shift")
 		{
-			CHECK(trSqr.shape.getVolume() == 0.0);
+			CHECK(shSqr.getVolume() == 0.0);
 		}
 	}
 
@@ -389,24 +390,24 @@ TEST_CASE("class Transform - test Sqr", "[testSqrTransform]")
 
 		SECTION("coordinates Sqr after ScaleX")
 		{
-			CHECK(trSqr.shape.x1 == 6);
-			CHECK(trSqr.shape.y1 == 3);
-			CHECK(trSqr.shape.x2 == 12);
-			CHECK(trSqr.shape.y2 == 3);
-			CHECK(trSqr.shape.x3 == 12);
-			CHECK(trSqr.shape.y3 == 5);
-			CHECK(trSqr.shape.x4 == 6);
-			CHECK(trSqr.shape.y4 == 5);
+			CHECK(shSqr.x1 == 6);
+			CHECK(shSqr.y1 == 3);
+			CHECK(shSqr.x2 == 12);
+			CHECK(shSqr.y2 == 3);
+			CHECK(shSqr.x3 == 12);
+			CHECK(shSqr.y3 == 5);
+			CHECK(shSqr.x4 == 6);
+			CHECK(shSqr.y4 == 5);
 		}
 
 		SECTION("Square Sqr after ScaleX")
 		{
-			CHECK(trSqr.shape.getSquare() == 4.0);
+			CHECK(shSqr.getSquare() == 4.0);
 		}
 
 		SECTION("Volume Sqr after ScaleX")
 		{
-			CHECK(trSqr.shape.getVolume() == 0.0);
+			CHECK(shSqr.getVolume() == 0.0);
 		}
 	}
 
@@ -417,24 +418,24 @@ TEST_CASE("class Transform - test Sqr", "[testSqrTransform]")
 
 		SECTION("coordinates Sqr after ScaleY")
 		{
-			CHECK(trSqr.shape.x1 == 6);
-			CHECK(trSqr.shape.y1 == 12);
-			CHECK(trSqr.shape.x2 == 12);
-			CHECK(trSqr.shape.y2 == 12);
-			CHECK(trSqr.shape.x3 == 12);
-			CHECK(trSqr.shape.y3 == 20);
-			CHECK(trSqr.shape.x4 == 6);
-			CHECK(trSqr.shape.y4 == 20);
+			CHECK(shSqr.x1 == 6);
+			CHECK(shSqr.y1 == 12);
+			CHECK(shSqr.x2 == 12);
+			CHECK(shSqr.y2 == 12);
+			CHECK(shSqr.x3 == 12);
+			CHECK(shSqr.y3 == 20);
+			CHECK(shSqr.x4 == 6);
+			CHECK(shSqr.y4 == 20);
 		}
 
 		SECTION("Square Sqr after ScaleY")
 		{
-			CHECK(trSqr.shape.getSquare() == 4.0);
+			CHECK(shSqr.getSquare() == 4.0);
 		}
 
 		SECTION("Volume Sqr after ScaleY")
 		{
-			CHECK(trSqr.shape.getVolume() == 0.0);
+			CHECK(shSqr.getVolume() == 0.0);
 		}
 	}
 
@@ -445,20 +446,20 @@ TEST_CASE("class Transform - test Sqr", "[testSqrTransform]")
 
 		SECTION("coordinates Sqr after ScaleZ")
 		{
-			CHECK(trSqr.shape.z1 == 0);
-			CHECK(trSqr.shape.z2 == 0);
-			CHECK(trSqr.shape.z3 == 0);
-			CHECK(trSqr.shape.z4 == 0);
+			CHECK(shSqr.z1 == 0);
+			CHECK(shSqr.z2 == 0);
+			CHECK(shSqr.z3 == 0);
+			CHECK(shSqr.z4 == 0);
 		}
 
 		SECTION("Square Sqr after ScaleZ")
 		{
-			CHECK(trSqr.shape.getSquare() == 4.0);
+			CHECK(shSqr.getSquare() == 4.0);
 		}
 
 		SECTION("Volume Sqr after ScaleZ")
 		{
-			CHECK(trSqr.shape.getVolume() == 0.0);
+			CHECK(shSqr.getVolume() == 0.0);
 		}
 	}
 
@@ -469,24 +470,24 @@ TEST_CASE("class Transform - test Sqr", "[testSqrTransform]")
 
 		SECTION("coordinates Sqr after Scale")
 		{
-			CHECK(trSqr.shape.x1 == 3);
-			CHECK(trSqr.shape.y1 == 6);
-			CHECK(trSqr.shape.x2 == 6);
-			CHECK(trSqr.shape.y2 == 6);
-			CHECK(trSqr.shape.x3 == 6);
-			CHECK(trSqr.shape.y3 == 10);
-			CHECK(trSqr.shape.x4 == 3);
-			CHECK(trSqr.shape.y4 == 10);
+			CHECK(shSqr.x1 == 3);
+			CHECK(shSqr.y1 == 6);
+			CHECK(shSqr.x2 == 6);
+			CHECK(shSqr.y2 == 6);
+			CHECK(shSqr.x3 == 6);
+			CHECK(shSqr.y3 == 10);
+			CHECK(shSqr.x4 == 3);
+			CHECK(shSqr.y4 == 10);
 		}
 
 		SECTION("Square Sqr after Scale")
 		{
-			CHECK(trSqr.shape.getSquare() == 4.0);
+			CHECK(shSqr.getSquare() == 4.0);
 		}
 
 		SECTION("Volume Sqr after Scale")
 		{
-			CHECK(trSqr.shape.getVolume() == 0.0);
+			CHECK(shSqr.getVolume() == 0.0);
 		}
 	}
 
@@ -498,27 +499,27 @@ TEST_CASE("class Transform - test Sqr", "[testSqrTransform]")
 std::once_flag flag11;
 void trCubeShift(const int shX, const int shY, const int shZ)
 {
-	trCube.shift(shX, shY, shZ);
+	shCube.shiftCube(shX, shY, shZ);
 }
 std::once_flag flag12;
 void trCubeScaleX(const int scX)
 {
-	trCube.scaleX(scX);
+	shCube.scaleXCube(scX);
 }
 std::once_flag flag13;
 void trCubeScaleY(const int scY)
 {
-	trCube.scaleY(scY);
+	shCube.scaleYCube(scY);
 }
 std::once_flag flag14;
 void trCubeScaleZ(const int scZ)
 {
-	trCube.scaleZ(scZ);
+	shCube.scaleZCube(scZ);
 }
 std::once_flag flag15;
 void trCubeScale(const int sc)
 {
-	trCube.scale(sc);
+	shCube.scaleCube(sc);
 }
 
 TEST_CASE("class Transform - test Cube", "[testCubeTransform]")
@@ -533,40 +534,40 @@ TEST_CASE("class Transform - test Cube", "[testCubeTransform]")
 
 		SECTION("coordinates Cube after Shift")
 		{
-			CHECK(trCube.shape.x1 == 2);
-			CHECK(trCube.shape.y1 == 3);
-			CHECK(trCube.shape.z1 == 4);
-			CHECK(trCube.shape.x2 == 4);
-			CHECK(trCube.shape.y2 == 3);
-			CHECK(trCube.shape.z2 == 4);
-			CHECK(trCube.shape.x3 == 4);
-			CHECK(trCube.shape.y3 == 3);
-			CHECK(trCube.shape.z3 == 6);
-			CHECK(trCube.shape.x4 == 2);
-			CHECK(trCube.shape.y4 == 3);
-			CHECK(trCube.shape.z4 == 6);
-			CHECK(trCube.shape.x5 == 2);
-			CHECK(trCube.shape.y5 == 5);
-			CHECK(trCube.shape.z5 == 6);
-			CHECK(trCube.shape.x6 == 2);
-			CHECK(trCube.shape.y6 == 5);
-			CHECK(trCube.shape.z6 == 4);
-			CHECK(trCube.shape.x7 == 4);
-			CHECK(trCube.shape.y7 == 5);
-			CHECK(trCube.shape.z7 == 4);
-			CHECK(trCube.shape.x8 == 4);
-			CHECK(trCube.shape.y8 == 5);
-			CHECK(trCube.shape.z8 == 6);
+			CHECK(shCube.x1 == 2);
+			CHECK(shCube.y1 == 3);
+			CHECK(shCube.z1 == 4);
+			CHECK(shCube.x2 == 4);
+			CHECK(shCube.y2 == 3);
+			CHECK(shCube.z2 == 4);
+			CHECK(shCube.x3 == 4);
+			CHECK(shCube.y3 == 3);
+			CHECK(shCube.z3 == 6);
+			CHECK(shCube.x4 == 2);
+			CHECK(shCube.y4 == 3);
+			CHECK(shCube.z4 == 6);
+			CHECK(shCube.x5 == 2);
+			CHECK(shCube.y5 == 5);
+			CHECK(shCube.z5 == 6);
+			CHECK(shCube.x6 == 2);
+			CHECK(shCube.y6 == 5);
+			CHECK(shCube.z6 == 4);
+			CHECK(shCube.x7 == 4);
+			CHECK(shCube.y7 == 5);
+			CHECK(shCube.z7 == 4);
+			CHECK(shCube.x8 == 4);
+			CHECK(shCube.y8 == 5);
+			CHECK(shCube.z8 == 6);
 		}
 
 		SECTION("Square Cube after Shift")
 		{
-			CHECK(trCube.shape.getSquare() == 24.0);
+			CHECK(shCube.getSquare() == 24.0);
 		}
 
 		SECTION("Volume Cube after Shift")
 		{
-			CHECK(trCube.shape.getVolume() == 8.0);
+			CHECK(shCube.getVolume() == 8.0);
 		}
 	}
 
@@ -577,40 +578,40 @@ TEST_CASE("class Transform - test Cube", "[testCubeTransform]")
 
 		SECTION("coordinates Cube after ScaleX")
 		{
-			CHECK(trCube.shape.x1 == 6);
-			CHECK(trCube.shape.y1 == 3);
-			CHECK(trCube.shape.z1 == 4);
-			CHECK(trCube.shape.x2 == 12);
-			CHECK(trCube.shape.y2 == 3);
-			CHECK(trCube.shape.z2 == 4);
-			CHECK(trCube.shape.x3 == 12);
-			CHECK(trCube.shape.y3 == 3);
-			CHECK(trCube.shape.z3 == 6);
-			CHECK(trCube.shape.x4 == 6);
-			CHECK(trCube.shape.y4 == 3);
-			CHECK(trCube.shape.z4 == 6);
-			CHECK(trCube.shape.x5 == 6);
-			CHECK(trCube.shape.y5 == 5);
-			CHECK(trCube.shape.z5 == 6);
-			CHECK(trCube.shape.x6 == 6);
-			CHECK(trCube.shape.y6 == 5);
-			CHECK(trCube.shape.z6 == 4);
-			CHECK(trCube.shape.x7 == 12);
-			CHECK(trCube.shape.y7 == 5);
-			CHECK(trCube.shape.z7 == 4);
-			CHECK(trCube.shape.x8 == 12);
-			CHECK(trCube.shape.y8 == 5);
-			CHECK(trCube.shape.z8 == 6);
+			CHECK(shCube.x1 == 6);
+			CHECK(shCube.y1 == 3);
+			CHECK(shCube.z1 == 4);
+			CHECK(shCube.x2 == 12);
+			CHECK(shCube.y2 == 3);
+			CHECK(shCube.z2 == 4);
+			CHECK(shCube.x3 == 12);
+			CHECK(shCube.y3 == 3);
+			CHECK(shCube.z3 == 6);
+			CHECK(shCube.x4 == 6);
+			CHECK(shCube.y4 == 3);
+			CHECK(shCube.z4 == 6);
+			CHECK(shCube.x5 == 6);
+			CHECK(shCube.y5 == 5);
+			CHECK(shCube.z5 == 6);
+			CHECK(shCube.x6 == 6);
+			CHECK(shCube.y6 == 5);
+			CHECK(shCube.z6 == 4);
+			CHECK(shCube.x7 == 12);
+			CHECK(shCube.y7 == 5);
+			CHECK(shCube.z7 == 4);
+			CHECK(shCube.x8 == 12);
+			CHECK(shCube.y8 == 5);
+			CHECK(shCube.z8 == 6);
 		}
 
 		SECTION("Square Cube after ScaleX")
 		{
-			CHECK(trCube.shape.getSquare() == 24.0);
+			CHECK(shCube.getSquare() == 24.0);
 		}
 
 		SECTION("Volume Cube after ScaleX")
 		{
-			CHECK(trCube.shape.getVolume() == 8.0);
+			CHECK(shCube.getVolume() == 8.0);
 		}
 	}
 
@@ -621,40 +622,40 @@ TEST_CASE("class Transform - test Cube", "[testCubeTransform]")
 
 		SECTION("coordinates Cube after ScaleY")
 		{
-			CHECK(trCube.shape.x1 == 6);
-			CHECK(trCube.shape.y1 == 12);
-			CHECK(trCube.shape.z1 == 4);
-			CHECK(trCube.shape.x2 == 12);
-			CHECK(trCube.shape.y2 == 12);
-			CHECK(trCube.shape.z2 == 4);
-			CHECK(trCube.shape.x3 == 12);
-			CHECK(trCube.shape.y3 == 12);
-			CHECK(trCube.shape.z3 == 6);
-			CHECK(trCube.shape.x4 == 6);
-			CHECK(trCube.shape.y4 == 12);
-			CHECK(trCube.shape.z4 == 6);
-			CHECK(trCube.shape.x5 == 6);
-			CHECK(trCube.shape.y5 == 20);
-			CHECK(trCube.shape.z5 == 6);
-			CHECK(trCube.shape.x6 == 6);
-			CHECK(trCube.shape.y6 == 20);
-			CHECK(trCube.shape.z6 == 4);
-			CHECK(trCube.shape.x7 == 12);
-			CHECK(trCube.shape.y7 == 20);
-			CHECK(trCube.shape.z7 == 4);
-			CHECK(trCube.shape.x8 == 12);
-			CHECK(trCube.shape.y8 == 20);
-			CHECK(trCube.shape.z8 == 6);
+			CHECK(shCube.x1 == 6);
+			CHECK(shCube.y1 == 12);
+			CHECK(shCube.z1 == 4);
+			CHECK(shCube.x2 == 12);
+			CHECK(shCube.y2 == 12);
+			CHECK(shCube.z2 == 4);
+			CHECK(shCube.x3 == 12);
+			CHECK(shCube.y3 == 12);
+			CHECK(shCube.z3 == 6);
+			CHECK(shCube.x4 == 6);
+			CHECK(shCube.y4 == 12);
+			CHECK(shCube.z4 == 6);
+			CHECK(shCube.x5 == 6);
+			CHECK(shCube.y5 == 20);
+			CHECK(shCube.z5 == 6);
+			CHECK(shCube.x6 == 6);
+			CHECK(shCube.y6 == 20);
+			CHECK(shCube.z6 == 4);
+			CHECK(shCube.x7 == 12);
+			CHECK(shCube.y7 == 20);
+			CHECK(shCube.z7 == 4);
+			CHECK(shCube.x8 == 12);
+			CHECK(shCube.y8 == 20);
+			CHECK(shCube.z8 == 6);
 		}
 
 		SECTION("Square Cube after ScaleY")
 		{
-			CHECK(trCube.shape.getSquare() == 24.0);
+			CHECK(shCube.getSquare() == 24.0);
 		}
 
 		SECTION("Volume Cube after ScaleY")
 		{
-			CHECK(trCube.shape.getVolume() == 8.0);
+			CHECK(shCube.getVolume() == 8.0);
 		}
 	}
 
@@ -665,40 +666,40 @@ TEST_CASE("class Transform - test Cube", "[testCubeTransform]")
 
 		SECTION("coordinates Cube after ScaleZ")
 		{
-			CHECK(trCube.shape.x1 == 6);
-			CHECK(trCube.shape.y1 == 12);
-			CHECK(trCube.shape.z1 == 20);
-			CHECK(trCube.shape.x2 == 12);
-			CHECK(trCube.shape.y2 == 12);
-			CHECK(trCube.shape.z2 == 20);
-			CHECK(trCube.shape.x3 == 12);
-			CHECK(trCube.shape.y3 == 12);
-			CHECK(trCube.shape.z3 == 30);
-			CHECK(trCube.shape.x4 == 6);
-			CHECK(trCube.shape.y4 == 12);
-			CHECK(trCube.shape.z4 == 30);
-			CHECK(trCube.shape.x5 == 6);
-			CHECK(trCube.shape.y5 == 20);
-			CHECK(trCube.shape.z5 == 30);
-			CHECK(trCube.shape.x6 == 6);
-			CHECK(trCube.shape.y6 == 20);
-			CHECK(trCube.shape.z6 == 20);
-			CHECK(trCube.shape.x7 == 12);
-			CHECK(trCube.shape.y7 == 20);
-			CHECK(trCube.shape.z7 == 20);
-			CHECK(trCube.shape.x8 == 12);
-			CHECK(trCube.shape.y8 == 20);
-			CHECK(trCube.shape.z8 == 30);
+			CHECK(shCube.x1 == 6);
+			CHECK(shCube.y1 == 12);
+			CHECK(shCube.z1 == 20);
+			CHECK(shCube.x2 == 12);
+			CHECK(shCube.y2 == 12);
+			CHECK(shCube.z2 == 20);
+			CHECK(shCube.x3 == 12);
+			CHECK(shCube.y3 == 12);
+			CHECK(shCube.z3 == 30);
+			CHECK(shCube.x4 == 6);
+			CHECK(shCube.y4 == 12);
+			CHECK(shCube.z4 == 30);
+			CHECK(shCube.x5 == 6);
+			CHECK(shCube.y5 == 20);
+			CHECK(shCube.z5 == 30);
+			CHECK(shCube.x6 == 6);
+			CHECK(shCube.y6 == 20);
+			CHECK(shCube.z6 == 20);
+			CHECK(shCube.x7 == 12);
+			CHECK(shCube.y7 == 20);
+			CHECK(shCube.z7 == 20);
+			CHECK(shCube.x8 == 12);
+			CHECK(shCube.y8 == 20);
+			CHECK(shCube.z8 == 30);
 		}
 
 		SECTION("Square Cube after ScaleZ")
 		{
-			CHECK(trCube.shape.getSquare() == 24.0);
+			CHECK(shCube.getSquare() == 24.0);
 		}
 
 		SECTION("Volume Cube after ScaleZ")
 		{
-			CHECK(trCube.shape.getVolume() == 8.0);
+			CHECK(shCube.getVolume() == 8.0);
 		}
 	}
 
@@ -709,40 +710,40 @@ TEST_CASE("class Transform - test Cube", "[testCubeTransform]")
 
 		SECTION("coordinates Cube after Scale")
 		{
-			CHECK(trCube.shape.x1 == 3);
-			CHECK(trCube.shape.y1 == 6);
-			CHECK(trCube.shape.z1 == 10);
-			CHECK(trCube.shape.x2 == 6);
-			CHECK(trCube.shape.y2 == 6);
-			CHECK(trCube.shape.z2 == 10);
-			CHECK(trCube.shape.x3 == 6);
-			CHECK(trCube.shape.y3 == 6);
-			CHECK(trCube.shape.z3 == 15);
-			CHECK(trCube.shape.x4 == 3);
-			CHECK(trCube.shape.y4 == 6);
-			CHECK(trCube.shape.z4 == 15);
-			CHECK(trCube.shape.x5 == 3);
-			CHECK(trCube.shape.y5 == 10);
-			CHECK(trCube.shape.z5 == 15);
-			CHECK(trCube.shape.x6 == 3);
-			CHECK(trCube.shape.y6 == 10);
-			CHECK(trCube.shape.z6 == 10);
-			CHECK(trCube.shape.x7 == 6);
-			CHECK(trCube.shape.y7 == 10);
-			CHECK(trCube.shape.z7 == 10);
-			CHECK(trCube.shape.x8 == 6);
-			CHECK(trCube.shape.y8 == 10);
-			CHECK(trCube.shape.z8 == 15);
+			CHECK(shCube.x1 == 3);
+			CHECK(shCube.y1 == 6);
+			CHECK(shCube.z1 == 10);
+			CHECK(shCube.x2 == 6);
+			CHECK(shCube.y2 == 6);
+			CHECK(shCube.z2 == 10);
+			CHECK(shCube.x3 == 6);
+			CHECK(shCube.y3 == 6);
+			CHECK(shCube.z3 == 15);
+			CHECK(shCube.x4 == 3);
+			CHECK(shCube.y4 == 6);
+			CHECK(shCube.z4 == 15);
+			CHECK(shCube.x5 == 3);
+			CHECK(shCube.y5 == 10);
+			CHECK(shCube.z5 == 15);
+			CHECK(shCube.x6 == 3);
+			CHECK(shCube.y6 == 10);
+			CHECK(shCube.z6 == 10);
+			CHECK(shCube.x7 == 6);
+			CHECK(shCube.y7 == 10);
+			CHECK(shCube.z7 == 10);
+			CHECK(shCube.x8 == 6);
+			CHECK(shCube.y8 == 10);
+			CHECK(shCube.z8 == 15);
 		}
 
 		SECTION("Square Cube after Scale")
 		{
-			CHECK(trCube.shape.getSquare() == 24.0);
+			CHECK(shCube.getSquare() == 24.0);
 		}
 
 		SECTION("Volume Cube after Scale")
 		{
-			CHECK(trCube.shape.getVolume() == 8.0);
+			CHECK(shCube.getVolume() == 8.0);
 		}
 	}
 
@@ -756,10 +757,5 @@ TEST_CASE("class Transform - test Cube", "[testCubeTransform]")
 
 int main(int argc, char* argv[])
 {
-	
-	
-
-
-
 	return Catch::Session().run(argc, argv);
 }
