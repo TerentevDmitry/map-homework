@@ -22,10 +22,10 @@ TEST_CASE("class Shape - test Line", "[testLineShape]")
 
 	SECTION("coordinates Line")
 	{
-		CHECK(shLine.x1 == 1);
-		CHECK(shLine.y1 == 1);
-		CHECK(shLine.x2 == 3);
-		CHECK(shLine.y2 == 3);
+		CHECK(shLine.cos.x1 == 1);
+		CHECK(shLine.cos.y1 == 1);
+		CHECK(shLine.cos.x2 == 3);
+		CHECK(shLine.cos.y2 == 3);
 	}
 
 	SECTION("Square Line")
@@ -48,14 +48,14 @@ TEST_CASE("class Shape - test Sqr", "[testSqrShape]")
 
 	SECTION("coordinates Sqr")
 	{
-		CHECK(shSqr.x1 == 1);
-		CHECK(shSqr.y1 == 1);
-		CHECK(shSqr.x2 == 3);
-		CHECK(shSqr.y2 == 1);
-		CHECK(shSqr.x3 == 3);
-		CHECK(shSqr.y3 == 3);
-		CHECK(shSqr.x4 == 1);
-		CHECK(shSqr.y4 == 3);
+		CHECK(shSqr.cos.x1 == 1);
+		CHECK(shSqr.cos.y1 == 1);
+		CHECK(shSqr.cos.x2 == 3);
+		CHECK(shSqr.cos.y2 == 1);
+		CHECK(shSqr.cos.x3 == 3);
+		CHECK(shSqr.cos.y3 == 3);
+		CHECK(shSqr.cos.x4 == 1);
+		CHECK(shSqr.cos.y4 == 3);
 	}
 
 	SECTION("Square shSqr")
@@ -78,30 +78,30 @@ TEST_CASE("class Shape - test Cube", "[testCubeShape]")
 
 	SECTION("coordinates Cube")
 	{
-		CHECK(shCube.x1 == 1);
-		CHECK(shCube.y1 == 1);
-		CHECK(shCube.z1 == 1);
-		CHECK(shCube.x2 == 3);
-		CHECK(shCube.y2 == 1);
-		CHECK(shCube.z2 == 1);
-		CHECK(shCube.x3 == 3);
-		CHECK(shCube.y3 == 1);
-		CHECK(shCube.z3 == 3);
-		CHECK(shCube.x4 == 1);
-		CHECK(shCube.y4 == 1);
-		CHECK(shCube.z4 == 3);
-		CHECK(shCube.x5 == 1);
-		CHECK(shCube.y5 == 3);
-		CHECK(shCube.z5 == 3);
-		CHECK(shCube.x6 == 1);
-		CHECK(shCube.y6 == 3);
-		CHECK(shCube.z6 == 1);
-		CHECK(shCube.x7 == 3);
-		CHECK(shCube.y7 == 3);
-		CHECK(shCube.z7 == 1);
-		CHECK(shCube.x8 == 3);
-		CHECK(shCube.y8 == 3);
-		CHECK(shCube.z8 == 3);
+		CHECK(shCube.cos.x1 == 1);
+		CHECK(shCube.cos.y1 == 1);
+		CHECK(shCube.cos.z1 == 1);
+		CHECK(shCube.cos.x2 == 3);
+		CHECK(shCube.cos.y2 == 1);
+		CHECK(shCube.cos.z2 == 1);
+		CHECK(shCube.cos.x3 == 3);
+		CHECK(shCube.cos.y3 == 1);
+		CHECK(shCube.cos.z3 == 3);
+		CHECK(shCube.cos.x4 == 1);
+		CHECK(shCube.cos.y4 == 1);
+		CHECK(shCube.cos.z4 == 3);
+		CHECK(shCube.cos.x5 == 1);
+		CHECK(shCube.cos.y5 == 3);
+		CHECK(shCube.cos.z5 == 3);
+		CHECK(shCube.cos.x6 == 1);
+		CHECK(shCube.cos.y6 == 3);
+		CHECK(shCube.cos.z6 == 1);
+		CHECK(shCube.cos.x7 == 3);
+		CHECK(shCube.cos.y7 == 3);
+		CHECK(shCube.cos.z7 == 1);
+		CHECK(shCube.cos.x8 == 3);
+		CHECK(shCube.cos.y8 == 3);
+		CHECK(shCube.cos.z8 == 3);
 	}
 
 	SECTION("Square Cube")
@@ -124,8 +124,8 @@ TEST_CASE("class Shape - test Circle", "[testCircleShape]")
 
 	SECTION("coordinates Circle")
 	{
-		CHECK(shCircle.x1 == 0);
-		CHECK(shCircle.y1 == 0);
+		CHECK(shCircle.cos.x1 == 0);
+		CHECK(shCircle.cos.y1 == 0);
 		CHECK(shCircle.getRadius() == 1.);
 	}
 
@@ -149,8 +149,8 @@ TEST_CASE("class Shape - test Cylinder", "[testCylinderShape]")
 
 	SECTION("coordinates Cylinder")
 	{
-		CHECK(shCylinder.x1 == 0);
-		CHECK(shCylinder.y1 == 0);
+		CHECK(shCylinder.cos.x1 == 0);
+		CHECK(shCylinder.cos.y1 == 0);
 		CHECK(shCylinder.getRadius() == 1.);
 		CHECK(shCylinder.getHeight() == 10.);
 	}
@@ -210,10 +210,10 @@ TEST_CASE("class Transform - test Line", "[testLineTransform]")
 		SECTION("coordinates Line after Shift")
 		{
 
-			CHECK(shLine.x1 == 1 + shX);
-			CHECK(shLine.y1 == 1 + shY);
-			CHECK(shLine.x2 == 3 + shX);
-			CHECK(shLine.y2 == 3 + shY);
+			CHECK(shLine.cos.x1 == 1 + shX);
+			CHECK(shLine.cos.y1 == 1 + shY);
+			CHECK(shLine.cos.x2 == 3 + shX);
+			CHECK(shLine.cos.y2 == 3 + shY);
 		}
 
 		SECTION("Square Line after Shift")
@@ -234,10 +234,10 @@ TEST_CASE("class Transform - test Line", "[testLineTransform]")
 
 		SECTION("coordinates Line after ScaleX")
 		{
-			CHECK(shLine.x1 == 6);
-			CHECK(shLine.y1 == 3);
-			CHECK(shLine.x2 == 12);
-			CHECK(shLine.y2 == 5);
+			CHECK(shLine.cos.x1 == 6);
+			CHECK(shLine.cos.y1 == 3);
+			CHECK(shLine.cos.x2 == 12);
+			CHECK(shLine.cos.y2 == 5);
 		}
 
 		SECTION("Square Line after ScaleX")
@@ -258,10 +258,10 @@ TEST_CASE("class Transform - test Line", "[testLineTransform]")
 
 		SECTION("coordinates Line after ScaleY")
 		{
-			CHECK(shLine.x1 == 6);
-			CHECK(shLine.y1 == 12);
-			CHECK(shLine.x2 == 12);
-			CHECK(shLine.y2 == 20);
+			CHECK(shLine.cos.x1 == 6);
+			CHECK(shLine.cos.y1 == 12);
+			CHECK(shLine.cos.x2 == 12);
+			CHECK(shLine.cos.y2 == 20);
 		}
 
 		SECTION("Square Line after ScaleY")
@@ -282,8 +282,8 @@ TEST_CASE("class Transform - test Line", "[testLineTransform]")
 
 		SECTION("coordinates Line after ScaleZ")
 		{
-			CHECK(shLine.z1 == 0);
-			CHECK(shLine.z2 == 0);
+			CHECK(shLine.cos.z1 == 0);
+			CHECK(shLine.cos.z2 == 0);
 		}
 
 		SECTION("Square Line after ScaleZ")
@@ -304,10 +304,10 @@ TEST_CASE("class Transform - test Line", "[testLineTransform]")
 
 		SECTION("coordinates Line after Scale")
 		{
-			CHECK(shLine.x1 == 3);
-			CHECK(shLine.y1 == 6);
-			CHECK(shLine.x2 == 6);
-			CHECK(shLine.y2 == 10);
+			CHECK(shLine.cos.x1 == 3);
+			CHECK(shLine.cos.y1 == 6);
+			CHECK(shLine.cos.x2 == 6);
+			CHECK(shLine.cos.y2 == 10);
 		}
 
 		SECTION("Square Line after Scale")
@@ -362,14 +362,14 @@ TEST_CASE("class Transform - test Sqr", "[testSqrTransform]")
 
 		SECTION("coordinates Sqr after Shift")
 		{
-			CHECK(shSqr.x1 == 2);
-			CHECK(shSqr.y1 == 3);
-			CHECK(shSqr.x2 == 4);
-			CHECK(shSqr.y2 == 3);
-			CHECK(shSqr.x3 == 4);
-			CHECK(shSqr.y3 == 5);
-			CHECK(shSqr.x4 == 2);
-			CHECK(shSqr.y4 == 5);
+			CHECK(shSqr.cos.x1 == 2);
+			CHECK(shSqr.cos.y1 == 3);
+			CHECK(shSqr.cos.x2 == 4);
+			CHECK(shSqr.cos.y2 == 3);
+			CHECK(shSqr.cos.x3 == 4);
+			CHECK(shSqr.cos.y3 == 5);
+			CHECK(shSqr.cos.x4 == 2);
+			CHECK(shSqr.cos.y4 == 5);
 		}
 
 		SECTION("Square Sqr after Shift")
@@ -390,14 +390,14 @@ TEST_CASE("class Transform - test Sqr", "[testSqrTransform]")
 
 		SECTION("coordinates Sqr after ScaleX")
 		{
-			CHECK(shSqr.x1 == 6);
-			CHECK(shSqr.y1 == 3);
-			CHECK(shSqr.x2 == 12);
-			CHECK(shSqr.y2 == 3);
-			CHECK(shSqr.x3 == 12);
-			CHECK(shSqr.y3 == 5);
-			CHECK(shSqr.x4 == 6);
-			CHECK(shSqr.y4 == 5);
+			CHECK(shSqr.cos.x1 == 6);
+			CHECK(shSqr.cos.y1 == 3);
+			CHECK(shSqr.cos.x2 == 12);
+			CHECK(shSqr.cos.y2 == 3);
+			CHECK(shSqr.cos.x3 == 12);
+			CHECK(shSqr.cos.y3 == 5);
+			CHECK(shSqr.cos.x4 == 6);
+			CHECK(shSqr.cos.y4 == 5);
 		}
 
 		SECTION("Square Sqr after ScaleX")
@@ -418,14 +418,14 @@ TEST_CASE("class Transform - test Sqr", "[testSqrTransform]")
 
 		SECTION("coordinates Sqr after ScaleY")
 		{
-			CHECK(shSqr.x1 == 6);
-			CHECK(shSqr.y1 == 12);
-			CHECK(shSqr.x2 == 12);
-			CHECK(shSqr.y2 == 12);
-			CHECK(shSqr.x3 == 12);
-			CHECK(shSqr.y3 == 20);
-			CHECK(shSqr.x4 == 6);
-			CHECK(shSqr.y4 == 20);
+			CHECK(shSqr.cos.x1 == 6);
+			CHECK(shSqr.cos.y1 == 12);
+			CHECK(shSqr.cos.x2 == 12);
+			CHECK(shSqr.cos.y2 == 12);
+			CHECK(shSqr.cos.x3 == 12);
+			CHECK(shSqr.cos.y3 == 20);
+			CHECK(shSqr.cos.x4 == 6);
+			CHECK(shSqr.cos.y4 == 20);
 		}
 
 		SECTION("Square Sqr after ScaleY")
@@ -446,10 +446,10 @@ TEST_CASE("class Transform - test Sqr", "[testSqrTransform]")
 
 		SECTION("coordinates Sqr after ScaleZ")
 		{
-			CHECK(shSqr.z1 == 0);
-			CHECK(shSqr.z2 == 0);
-			CHECK(shSqr.z3 == 0);
-			CHECK(shSqr.z4 == 0);
+			CHECK(shSqr.cos.z1 == 0);
+			CHECK(shSqr.cos.z2 == 0);
+			CHECK(shSqr.cos.z3 == 0);
+			CHECK(shSqr.cos.z4 == 0);
 		}
 
 		SECTION("Square Sqr after ScaleZ")
@@ -470,14 +470,14 @@ TEST_CASE("class Transform - test Sqr", "[testSqrTransform]")
 
 		SECTION("coordinates Sqr after Scale")
 		{
-			CHECK(shSqr.x1 == 3);
-			CHECK(shSqr.y1 == 6);
-			CHECK(shSqr.x2 == 6);
-			CHECK(shSqr.y2 == 6);
-			CHECK(shSqr.x3 == 6);
-			CHECK(shSqr.y3 == 10);
-			CHECK(shSqr.x4 == 3);
-			CHECK(shSqr.y4 == 10);
+			CHECK(shSqr.cos.x1 == 3);
+			CHECK(shSqr.cos.y1 == 6);
+			CHECK(shSqr.cos.x2 == 6);
+			CHECK(shSqr.cos.y2 == 6);
+			CHECK(shSqr.cos.x3 == 6);
+			CHECK(shSqr.cos.y3 == 10);
+			CHECK(shSqr.cos.x4 == 3);
+			CHECK(shSqr.cos.y4 == 10);
 		}
 
 		SECTION("Square Sqr after Scale")
@@ -534,30 +534,30 @@ TEST_CASE("class Transform - test Cube", "[testCubeTransform]")
 
 		SECTION("coordinates Cube after Shift")
 		{
-			CHECK(shCube.x1 == 2);
-			CHECK(shCube.y1 == 3);
-			CHECK(shCube.z1 == 4);
-			CHECK(shCube.x2 == 4);
-			CHECK(shCube.y2 == 3);
-			CHECK(shCube.z2 == 4);
-			CHECK(shCube.x3 == 4);
-			CHECK(shCube.y3 == 3);
-			CHECK(shCube.z3 == 6);
-			CHECK(shCube.x4 == 2);
-			CHECK(shCube.y4 == 3);
-			CHECK(shCube.z4 == 6);
-			CHECK(shCube.x5 == 2);
-			CHECK(shCube.y5 == 5);
-			CHECK(shCube.z5 == 6);
-			CHECK(shCube.x6 == 2);
-			CHECK(shCube.y6 == 5);
-			CHECK(shCube.z6 == 4);
-			CHECK(shCube.x7 == 4);
-			CHECK(shCube.y7 == 5);
-			CHECK(shCube.z7 == 4);
-			CHECK(shCube.x8 == 4);
-			CHECK(shCube.y8 == 5);
-			CHECK(shCube.z8 == 6);
+			CHECK(shCube.cos.x1 == 2);
+			CHECK(shCube.cos.y1 == 3);
+			CHECK(shCube.cos.z1 == 4);
+			CHECK(shCube.cos.x2 == 4);
+			CHECK(shCube.cos.y2 == 3);
+			CHECK(shCube.cos.z2 == 4);
+			CHECK(shCube.cos.x3 == 4);
+			CHECK(shCube.cos.y3 == 3);
+			CHECK(shCube.cos.z3 == 6);
+			CHECK(shCube.cos.x4 == 2);
+			CHECK(shCube.cos.y4 == 3);
+			CHECK(shCube.cos.z4 == 6);
+			CHECK(shCube.cos.x5 == 2);
+			CHECK(shCube.cos.y5 == 5);
+			CHECK(shCube.cos.z5 == 6);
+			CHECK(shCube.cos.x6 == 2);
+			CHECK(shCube.cos.y6 == 5);
+			CHECK(shCube.cos.z6 == 4);
+			CHECK(shCube.cos.x7 == 4);
+			CHECK(shCube.cos.y7 == 5);
+			CHECK(shCube.cos.z7 == 4);
+			CHECK(shCube.cos.x8 == 4);
+			CHECK(shCube.cos.y8 == 5);
+			CHECK(shCube.cos.z8 == 6);
 		}
 
 		SECTION("Square Cube after Shift")
@@ -578,30 +578,30 @@ TEST_CASE("class Transform - test Cube", "[testCubeTransform]")
 
 		SECTION("coordinates Cube after ScaleX")
 		{
-			CHECK(shCube.x1 == 6);
-			CHECK(shCube.y1 == 3);
-			CHECK(shCube.z1 == 4);
-			CHECK(shCube.x2 == 12);
-			CHECK(shCube.y2 == 3);
-			CHECK(shCube.z2 == 4);
-			CHECK(shCube.x3 == 12);
-			CHECK(shCube.y3 == 3);
-			CHECK(shCube.z3 == 6);
-			CHECK(shCube.x4 == 6);
-			CHECK(shCube.y4 == 3);
-			CHECK(shCube.z4 == 6);
-			CHECK(shCube.x5 == 6);
-			CHECK(shCube.y5 == 5);
-			CHECK(shCube.z5 == 6);
-			CHECK(shCube.x6 == 6);
-			CHECK(shCube.y6 == 5);
-			CHECK(shCube.z6 == 4);
-			CHECK(shCube.x7 == 12);
-			CHECK(shCube.y7 == 5);
-			CHECK(shCube.z7 == 4);
-			CHECK(shCube.x8 == 12);
-			CHECK(shCube.y8 == 5);
-			CHECK(shCube.z8 == 6);
+			CHECK(shCube.cos.x1 == 6);
+			CHECK(shCube.cos.y1 == 3);
+			CHECK(shCube.cos.z1 == 4);
+			CHECK(shCube.cos.x2 == 12);
+			CHECK(shCube.cos.y2 == 3);
+			CHECK(shCube.cos.z2 == 4);
+			CHECK(shCube.cos.x3 == 12);
+			CHECK(shCube.cos.y3 == 3);
+			CHECK(shCube.cos.z3 == 6);
+			CHECK(shCube.cos.x4 == 6);
+			CHECK(shCube.cos.y4 == 3);
+			CHECK(shCube.cos.z4 == 6);
+			CHECK(shCube.cos.x5 == 6);
+			CHECK(shCube.cos.y5 == 5);
+			CHECK(shCube.cos.z5 == 6);
+			CHECK(shCube.cos.x6 == 6);
+			CHECK(shCube.cos.y6 == 5);
+			CHECK(shCube.cos.z6 == 4);
+			CHECK(shCube.cos.x7 == 12);
+			CHECK(shCube.cos.y7 == 5);
+			CHECK(shCube.cos.z7 == 4);
+			CHECK(shCube.cos.x8 == 12);
+			CHECK(shCube.cos.y8 == 5);
+			CHECK(shCube.cos.z8 == 6);
 		}
 
 		SECTION("Square Cube after ScaleX")
@@ -622,30 +622,30 @@ TEST_CASE("class Transform - test Cube", "[testCubeTransform]")
 
 		SECTION("coordinates Cube after ScaleY")
 		{
-			CHECK(shCube.x1 == 6);
-			CHECK(shCube.y1 == 12);
-			CHECK(shCube.z1 == 4);
-			CHECK(shCube.x2 == 12);
-			CHECK(shCube.y2 == 12);
-			CHECK(shCube.z2 == 4);
-			CHECK(shCube.x3 == 12);
-			CHECK(shCube.y3 == 12);
-			CHECK(shCube.z3 == 6);
-			CHECK(shCube.x4 == 6);
-			CHECK(shCube.y4 == 12);
-			CHECK(shCube.z4 == 6);
-			CHECK(shCube.x5 == 6);
-			CHECK(shCube.y5 == 20);
-			CHECK(shCube.z5 == 6);
-			CHECK(shCube.x6 == 6);
-			CHECK(shCube.y6 == 20);
-			CHECK(shCube.z6 == 4);
-			CHECK(shCube.x7 == 12);
-			CHECK(shCube.y7 == 20);
-			CHECK(shCube.z7 == 4);
-			CHECK(shCube.x8 == 12);
-			CHECK(shCube.y8 == 20);
-			CHECK(shCube.z8 == 6);
+			CHECK(shCube.cos.x1 == 6);
+			CHECK(shCube.cos.y1 == 12);
+			CHECK(shCube.cos.z1 == 4);
+			CHECK(shCube.cos.x2 == 12);
+			CHECK(shCube.cos.y2 == 12);
+			CHECK(shCube.cos.z2 == 4);
+			CHECK(shCube.cos.x3 == 12);
+			CHECK(shCube.cos.y3 == 12);
+			CHECK(shCube.cos.z3 == 6);
+			CHECK(shCube.cos.x4 == 6);
+			CHECK(shCube.cos.y4 == 12);
+			CHECK(shCube.cos.z4 == 6);
+			CHECK(shCube.cos.x5 == 6);
+			CHECK(shCube.cos.y5 == 20);
+			CHECK(shCube.cos.z5 == 6);
+			CHECK(shCube.cos.x6 == 6);
+			CHECK(shCube.cos.y6 == 20);
+			CHECK(shCube.cos.z6 == 4);
+			CHECK(shCube.cos.x7 == 12);
+			CHECK(shCube.cos.y7 == 20);
+			CHECK(shCube.cos.z7 == 4);
+			CHECK(shCube.cos.x8 == 12);
+			CHECK(shCube.cos.y8 == 20);
+			CHECK(shCube.cos.z8 == 6);
 		}
 
 		SECTION("Square Cube after ScaleY")
@@ -666,30 +666,30 @@ TEST_CASE("class Transform - test Cube", "[testCubeTransform]")
 
 		SECTION("coordinates Cube after ScaleZ")
 		{
-			CHECK(shCube.x1 == 6);
-			CHECK(shCube.y1 == 12);
-			CHECK(shCube.z1 == 20);
-			CHECK(shCube.x2 == 12);
-			CHECK(shCube.y2 == 12);
-			CHECK(shCube.z2 == 20);
-			CHECK(shCube.x3 == 12);
-			CHECK(shCube.y3 == 12);
-			CHECK(shCube.z3 == 30);
-			CHECK(shCube.x4 == 6);
-			CHECK(shCube.y4 == 12);
-			CHECK(shCube.z4 == 30);
-			CHECK(shCube.x5 == 6);
-			CHECK(shCube.y5 == 20);
-			CHECK(shCube.z5 == 30);
-			CHECK(shCube.x6 == 6);
-			CHECK(shCube.y6 == 20);
-			CHECK(shCube.z6 == 20);
-			CHECK(shCube.x7 == 12);
-			CHECK(shCube.y7 == 20);
-			CHECK(shCube.z7 == 20);
-			CHECK(shCube.x8 == 12);
-			CHECK(shCube.y8 == 20);
-			CHECK(shCube.z8 == 30);
+			CHECK(shCube.cos.x1 == 6);
+			CHECK(shCube.cos.y1 == 12);
+			CHECK(shCube.cos.z1 == 20);
+			CHECK(shCube.cos.x2 == 12);
+			CHECK(shCube.cos.y2 == 12);
+			CHECK(shCube.cos.z2 == 20);
+			CHECK(shCube.cos.x3 == 12);
+			CHECK(shCube.cos.y3 == 12);
+			CHECK(shCube.cos.z3 == 30);
+			CHECK(shCube.cos.x4 == 6);
+			CHECK(shCube.cos.y4 == 12);
+			CHECK(shCube.cos.z4 == 30);
+			CHECK(shCube.cos.x5 == 6);
+			CHECK(shCube.cos.y5 == 20);
+			CHECK(shCube.cos.z5 == 30);
+			CHECK(shCube.cos.x6 == 6);
+			CHECK(shCube.cos.y6 == 20);
+			CHECK(shCube.cos.z6 == 20);
+			CHECK(shCube.cos.x7 == 12);
+			CHECK(shCube.cos.y7 == 20);
+			CHECK(shCube.cos.z7 == 20);
+			CHECK(shCube.cos.x8 == 12);
+			CHECK(shCube.cos.y8 == 20);
+			CHECK(shCube.cos.z8 == 30);
 		}
 
 		SECTION("Square Cube after ScaleZ")
@@ -710,30 +710,30 @@ TEST_CASE("class Transform - test Cube", "[testCubeTransform]")
 
 		SECTION("coordinates Cube after Scale")
 		{
-			CHECK(shCube.x1 == 3);
-			CHECK(shCube.y1 == 6);
-			CHECK(shCube.z1 == 10);
-			CHECK(shCube.x2 == 6);
-			CHECK(shCube.y2 == 6);
-			CHECK(shCube.z2 == 10);
-			CHECK(shCube.x3 == 6);
-			CHECK(shCube.y3 == 6);
-			CHECK(shCube.z3 == 15);
-			CHECK(shCube.x4 == 3);
-			CHECK(shCube.y4 == 6);
-			CHECK(shCube.z4 == 15);
-			CHECK(shCube.x5 == 3);
-			CHECK(shCube.y5 == 10);
-			CHECK(shCube.z5 == 15);
-			CHECK(shCube.x6 == 3);
-			CHECK(shCube.y6 == 10);
-			CHECK(shCube.z6 == 10);
-			CHECK(shCube.x7 == 6);
-			CHECK(shCube.y7 == 10);
-			CHECK(shCube.z7 == 10);
-			CHECK(shCube.x8 == 6);
-			CHECK(shCube.y8 == 10);
-			CHECK(shCube.z8 == 15);
+			CHECK(shCube.cos.x1 == 3);
+			CHECK(shCube.cos.y1 == 6);
+			CHECK(shCube.cos.z1 == 10);
+			CHECK(shCube.cos.x2 == 6);
+			CHECK(shCube.cos.y2 == 6);
+			CHECK(shCube.cos.z2 == 10);
+			CHECK(shCube.cos.x3 == 6);
+			CHECK(shCube.cos.y3 == 6);
+			CHECK(shCube.cos.z3 == 15);
+			CHECK(shCube.cos.x4 == 3);
+			CHECK(shCube.cos.y4 == 6);
+			CHECK(shCube.cos.z4 == 15);
+			CHECK(shCube.cos.x5 == 3);
+			CHECK(shCube.cos.y5 == 10);
+			CHECK(shCube.cos.z5 == 15);
+			CHECK(shCube.cos.x6 == 3);
+			CHECK(shCube.cos.y6 == 10);
+			CHECK(shCube.cos.z6 == 10);
+			CHECK(shCube.cos.x7 == 6);
+			CHECK(shCube.cos.y7 == 10);
+			CHECK(shCube.cos.z7 == 10);
+			CHECK(shCube.cos.x8 == 6);
+			CHECK(shCube.cos.y8 == 10);
+			CHECK(shCube.cos.z8 == 15);
 		}
 
 		SECTION("Square Cube after Scale")
