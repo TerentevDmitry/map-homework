@@ -6,17 +6,9 @@ enum class nameOfShapes
 	line = 0, sqr = 1, cube = 2, circle = 3, cylinder = 4
 };
 
-
-
-
 class Shape
 {
 private:
-	//static const int line = static_cast<int> (nameOfShapes::line);
-	//static const int sqr = static_cast<int> (nameOfShapes::sqr);
-	//static const int cube = static_cast<int> (nameOfShapes::cube);
-	//static const int circle = static_cast<int> (nameOfShapes::circle);
-	//static const int cylinder = static_cast<int> (nameOfShapes::cylinder);
 
 	int type = 0;
 
@@ -37,11 +29,7 @@ private:
 			x8 = 0, y8 = 0, z8 = 0;
 	};
 
-
-
-
-
-
+	coordinatesOfShapes cos;
 
 public:
 	
@@ -63,7 +51,6 @@ public:
 	Shape(int _x1, int _y1, double R, double H);
 
 
-	
 	int getType() const;
 	double getVolume() const;
 	double getSquare() const;
@@ -90,7 +77,5 @@ public:
 	void scaleSqr(int s);
 	void scaleCube(int s);
 
-
-	coordinatesOfShapes cos;
-	
+	const coordinatesOfShapes cosForMain() const;
 };

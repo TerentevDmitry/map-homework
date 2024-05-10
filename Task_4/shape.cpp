@@ -12,6 +12,7 @@ Shape::Shape(int _x1, int _y1, int _x2, int _y2)
 	cos.x2 = _x2; cos.y2 = _y2;
 	square = 0.;
 	volume = 0.;
+	coordinatesOfShapes cosForMain();
 }
 
 Shape::Shape(int _x1, int _y1, int _x2, int _y2, int _x3, int _y3, int _x4, int _y4)
@@ -23,6 +24,7 @@ Shape::Shape(int _x1, int _y1, int _x2, int _y2, int _x3, int _y3, int _x4, int 
 	cos.x4 = _x4; cos.y4 = _y4;
 	square = pow((cos.x1 - cos.x2), 2) + pow((cos.y1 - cos.y2), 2);
 	volume = 0.;
+	coordinatesOfShapes cosForMain();
 }
 
 Shape::Shape(int _x1, int _y1, int _z1, int _x2, int _y2, int _z2, int _x3, int _y3, int _z3, int _x4, int _y4, int _z4, int _x5, int _y5, int _z5, int _x6, int _y6, int _z6, int _x7, int _y7, int _z7, int _x8, int _y8, int _z8)
@@ -38,6 +40,7 @@ Shape::Shape(int _x1, int _y1, int _z1, int _x2, int _y2, int _z2, int _x3, int 
 	cos.x8 = _x8; cos.y8 = _y8; cos.z8 = _z8;
 	square = 6 * (pow((cos.x1 - cos.x2), 2) + pow((cos.y1 - cos.y2), 2));
 	volume = 2 * (pow((cos.x1 - cos.x2), 2) + pow((cos.y1 - cos.y2), 2));
+	coordinatesOfShapes cosForMain();
 }
 
 Shape::Shape(int _x1, int _y1, double R)
@@ -47,6 +50,7 @@ Shape::Shape(int _x1, int _y1, double R)
 	radius = R;
 	square = M_PI * R * R;
 	volume = 0.;
+	coordinatesOfShapes cosForMain();
 }
 
 Shape::Shape(int _x1, int _y1, double R, double H)
@@ -57,6 +61,7 @@ Shape::Shape(int _x1, int _y1, double R, double H)
 	height = H;
 	square = 2 * M_PI * R * (R + height);
 	volume = M_PI * R * R * height;
+	coordinatesOfShapes cosForMain();
 }
 
 int Shape::getType() const
@@ -100,14 +105,14 @@ void Shape::shiftSqr(int m, int n)
 
 void Shape::shiftCube(int m, int n, int k)
 {
-		cos.x1 += m; cos.y1 += n; cos.z1 += k;
-		cos.x2 += m; cos.y2 += n; cos.z2 += k;
-		cos.x3 += m; cos.y3 += n; cos.z3 += k;
-		cos.x4 += m; cos.y4 += n; cos.z4 += k;
-		cos.x5 += m; cos.y5 += n; cos.z5 += k;
-		cos.x6 += m; cos.y6 += n; cos.z6 += k;
-		cos.x7 += m; cos.y7 += n; cos.z7 += k;
-		cos.x8 += m; cos.y8 += n; cos.z8 += k;
+	cos.x1 += m; cos.y1 += n; cos.z1 += k;
+	cos.x2 += m; cos.y2 += n; cos.z2 += k;
+	cos.x3 += m; cos.y3 += n; cos.z3 += k;
+	cos.x4 += m; cos.y4 += n; cos.z4 += k;
+	cos.x5 += m; cos.y5 += n; cos.z5 += k;
+	cos.x6 += m; cos.y6 += n; cos.z6 += k;
+	cos.x7 += m; cos.y7 += n; cos.z7 += k;
+	cos.x8 += m; cos.y8 += n; cos.z8 += k;
 }
 
 void Shape::scaleXLine(int a)
@@ -213,5 +218,20 @@ void Shape::scaleCube(int s)
 	cos.x7 /= s; cos.y7 /= s; cos.z7 /= s;
 	cos.x8 /= s; cos.y8 /= s; cos.z8 /= s;
 
+}
+
+const Shape::coordinatesOfShapes Shape::cosForMain() const
+{
+	coordinatesOfShapes cosForMain;
+	cosForMain.x1 = cos.x1, cosForMain.y1 = cos.y1, cosForMain.z1 = cos.z1,
+	cosForMain.x2 = cos.x2, cosForMain.y2 = cos.y2, cosForMain.z2 = cos.z2,
+	cosForMain.x3 = cos.x3, cosForMain.y3 = cos.y3, cosForMain.z3 = cos.z3,
+	cosForMain.x4 = cos.x4, cosForMain.y4 = cos.y4, cosForMain.z4 = cos.z4,
+	cosForMain.x5 = cos.x5, cosForMain.y5 = cos.y5, cosForMain.z5 = cos.z5,
+	cosForMain.x6 = cos.x6, cosForMain.y6 = cos.y6, cosForMain.z6 = cos.z6,
+	cosForMain.x7 = cos.x7, cosForMain.y7 = cos.y7, cosForMain.z7 = cos.z7,
+	cosForMain.x8 = cos.x8, cosForMain.y8 = cos.y8, cosForMain.z8 = cos.z8;
+	
+	return cosForMain;
 }
 
