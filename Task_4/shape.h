@@ -23,11 +23,11 @@ struct coordinatesOfShapes
 class Shape
 {
 private:
-	static const int line = static_cast<int> (nameOfShapes::line);
-	static const int sqr = static_cast<int> (nameOfShapes::sqr);
-	static const int cube = static_cast<int> (nameOfShapes::cube);
-	static const int circle = static_cast<int> (nameOfShapes::circle);
-	static const int cylinder = static_cast<int> (nameOfShapes::cylinder);
+	//static const int line = static_cast<int> (nameOfShapes::line);
+	//static const int sqr = static_cast<int> (nameOfShapes::sqr);
+	//static const int cube = static_cast<int> (nameOfShapes::cube);
+	//static const int circle = static_cast<int> (nameOfShapes::circle);
+	//static const int cylinder = static_cast<int> (nameOfShapes::cylinder);
 
 	int type = 0;
 
